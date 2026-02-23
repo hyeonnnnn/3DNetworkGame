@@ -1,15 +1,15 @@
 ﻿using UnityEngine;
 
-public class PlayerRotateAbility : MonoBehaviour
+public class PlayerRotateAbility : PlayerAbility
 {
     public Transform CameraRoot;
-    public float RotationSpeed = 100f;
 
     private float _mx;
     private float _my;
 
-    private void Start()
+    protected override void Awake()
     {
+        base.Awake();
         Cursor.lockState = CursorLockMode.Locked;
     }
 
@@ -20,8 +20,8 @@ public class PlayerRotateAbility : MonoBehaviour
 
     private void HandleRotate()
     {
-        _mx += Input.GetAxis("Mouse X") * RotationSpeed * Time.deltaTime;
-        _my += Input.GetAxis("Mouse Y") * RotationSpeed * Time.deltaTime;
+        _mx += Input.GetAxis("Mouse X") * _owner.stat.RotationSpeed * Time.deltaTime;
+        _my += Input.GetAxis("Mouse Y") * _owner.stat.RotationSpeed * Time.deltaTime;
 
         _my = Mathf.Clamp(_my, -90f, 90f);
 

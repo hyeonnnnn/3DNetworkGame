@@ -6,26 +6,39 @@ public enum AttackSequenceMode
     Random
 }
 
-public class PlayerAttackAbility : MonoBehaviour
+public class PlayerAttackAbility : PlayerAbility
 {
     [SerializeField] private AttackSequenceMode _attackSequenceMode;
 
     private Animator _animator;
+    private float _attackCoolTimer = 0f;
 
     private int _currentIndex = 0;
     private readonly string[] _attackTriggers = { "Attack1", "Attack2", "Attack3" };
 
-    private void Awake()
+    protected override void Awake()
     {
+        base.Awake();
         _animator = GetComponent<Animator>();
     }
 
     private void Update()
     {
-        if(Input.GetMouseButtonDown(0))
+        _attackCoolTimer -= Time.deltaTime;
+
+        if (Input.GetMouseButtonDown(0))
         {
-            Attack();
+            TryAttack();
         }
+    }
+
+    private void TryAttack()
+    {
+        if (_attackCoolTimer > 0f)
+            return;
+
+        _attackCoolTimer = _owner.stat.AttackCoolTime;
+        Attack();
     }
 
     private void Attack()

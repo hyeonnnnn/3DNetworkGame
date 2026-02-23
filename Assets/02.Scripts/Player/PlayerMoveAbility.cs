@@ -1,19 +1,17 @@
 ﻿using UnityEngine;
 
-public class PlayerMoveAbility : MonoBehaviour
+public class PlayerMoveAbility : PlayerAbility
 {
-    [Header("움직임 세팅")]
-    [SerializeField] private float MoveSpeed = 7f;
-    [SerializeField] private float JumpForce = 2.5f;
-    [SerializeField] private const float GRAVITY = 9.8f;
-    [SerializeField] private float groundedStickForce = -2f;
+    private const float GRAVITY = 9.8f;
+    private const float GROUNDED_STICK_FORCE = -2f;
 
     private float _yVelocity = 0f;
     private CharacterController _characterController;
     private Animator _animator;
 
-    private void Awake()
+    protected override void Awake()
     {
+        base.Awake();
         _characterController = GetComponent<CharacterController>();
         _animator = GetComponent<Animator>();
     }
@@ -37,7 +35,7 @@ public class PlayerMoveAbility : MonoBehaviour
         _animator.SetFloat("Speed", speed);
 
         // 최종 이동 적용
-        Vector3 velocity = moveDirection * MoveSpeed;
+        Vector3 velocity = moveDirection * _owner.stat.MoveSpeed;
         velocity.y = _yVelocity;
 
         _characterController.Move(velocity * Time.deltaTime);
@@ -48,11 +46,11 @@ public class PlayerMoveAbility : MonoBehaviour
         // 중력 및 점프
         if (_characterController.isGrounded)
         {
-            _yVelocity = groundedStickForce; // 바닥에 붙어있도록
+            _yVelocity = GROUNDED_STICK_FORCE; // 바닥에 붙어있도록
 
             if (Input.GetKeyDown(KeyCode.Space))
             {
-                _yVelocity = JumpForce;
+                _yVelocity = _owner.stat.JumpPower;
             }
         }
         else
