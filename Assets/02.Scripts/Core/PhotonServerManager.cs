@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using Photon.Pun;
 using Photon.Realtime;
+using System.Collections.Generic;
 
 public class PhotonServerManager : MonoBehaviourPunCallbacks
 {
@@ -52,11 +53,30 @@ public class PhotonServerManager : MonoBehaviourPunCallbacks
     public override void OnJoinedRoom()
     {
         Debug.Log("룸 입장 완료");
+
+        Debug.Log($"룸 이름: {PhotonNetwork.CurrentRoom.Name}");
+        Debug.Log($"플레이어 수: {PhotonNetwork.CurrentRoom.PlayerCount}");
+
+        /*        
+        Dictionary<int, Player> roomPlayers = PhotonNetwork.CurrentRoom.Players;
+        foreach(KeyValuePair<int, Player> player in roomPlayers)
+        {
+            Debug.Log($"");
+        }*/
     }
 
     public override void OnJoinRoomFailed(short returnCode, string message)
     {
         Debug.Log($"방 입장에 실패했습니다. {returnCode} - {message}");
+
+        // 룸 옵션 정의
+        RoomOptions roomOptions = new RoomOptions();
+        roomOptions.MaxPlayers = 20;
+        roomOptions.IsVisible = true;
+        roomOptions.IsOpen = true;
+
+        // 룸 만들기
+        PhotonNetwork.CreateRoom("test", roomOptions);
     }
 
     public override void OnJoinRandomFailed(short returnCode, string message)
