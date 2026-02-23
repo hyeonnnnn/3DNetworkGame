@@ -37,7 +37,7 @@ public class PlayerAttackAbility : PlayerAbility
         if (_attackCoolTimer > 0f)
             return;
 
-        _attackCoolTimer = _owner.stat.AttackCoolTime;
+        _attackCoolTimer = _owner.Stat.AttackCoolTime;
         Attack();
     }
 

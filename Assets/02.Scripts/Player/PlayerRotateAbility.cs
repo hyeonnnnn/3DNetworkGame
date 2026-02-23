@@ -20,8 +20,8 @@ public class PlayerRotateAbility : PlayerAbility
 
     private void HandleRotate()
     {
-        _mx += Input.GetAxis("Mouse X") * _owner.stat.RotationSpeed * Time.deltaTime;
-        _my += Input.GetAxis("Mouse Y") * _owner.stat.RotationSpeed * Time.deltaTime;
+        _mx += Input.GetAxis("Mouse X") * _owner.Stat.RotationSpeed * Time.deltaTime;
+        _my += Input.GetAxis("Mouse Y") * _owner.Stat.RotationSpeed * Time.deltaTime;
 
         _my = Mathf.Clamp(_my, -90f, 90f);
 

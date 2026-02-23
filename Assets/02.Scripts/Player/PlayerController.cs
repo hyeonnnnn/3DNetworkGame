@@ -2,5 +2,5 @@
 
 public class PlayerController : MonoBehaviour
 {
-    public Stat stat;
+    public Stat Stat;
 }

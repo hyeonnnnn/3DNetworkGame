@@ -35,7 +35,7 @@ public class PlayerMoveAbility : PlayerAbility
         _animator.SetFloat("Speed", speed);
 
         // 최종 이동 적용
-        Vector3 velocity = moveDirection * _owner.stat.MoveSpeed;
+        Vector3 velocity = moveDirection * _owner.Stat.MoveSpeed;
         velocity.y = _yVelocity;
 
         _characterController.Move(velocity * Time.deltaTime);
@@ -50,7 +50,7 @@ public class PlayerMoveAbility : PlayerAbility
 
             if (Input.GetKeyDown(KeyCode.Space))
             {
-                _yVelocity = _owner.stat.JumpPower;
+                _yVelocity = _owner.Stat.JumpPower;
             }
         }
         else
