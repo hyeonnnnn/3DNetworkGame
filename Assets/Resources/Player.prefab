@@ -933,6 +933,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5dd83e8abbad0c44f8c1c269421813c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerController
+  PhotonView: {fileID: 0}
   Stat:
     MoveSpeed: 8
     JumpPower: 8

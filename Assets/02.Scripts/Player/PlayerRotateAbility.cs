@@ -11,13 +11,19 @@ public class PlayerRotateAbility : PlayerAbility
     protected override void Awake()
     {
         base.Awake();
+    }
+
+    private void Start()
+    {
+        if (!_owner.PhotonView.IsMine) return;
+
         Cursor.lockState = CursorLockMode.Locked;
 
         CinemachineCamera vcam = GameObject.Find("FollowCamera").GetComponent<CinemachineCamera>();
         vcam.Follow = CameraRoot.transform;
     }
 
-    private void Update()
+    public override void OnUpdate()
     {
         HandleRotate();
     }

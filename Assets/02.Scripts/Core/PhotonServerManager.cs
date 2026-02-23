@@ -11,14 +11,18 @@ public class PhotonServerManager : MonoBehaviourPunCallbacks
     // - 내가 방 입장에 성공/실패했다.
     // - 누군가가 내 방에 들어왔다 등등등..
 
-
     private string _version = "0.0.1";
     private string _nickname = "HY";
 
     private void Start()
     {
+        _nickname = $"_{UnityEngine.Random.Range(100, 999)}";
+
         PhotonNetwork.GameVersion = _version;
         PhotonNetwork.NickName = _nickname;
+
+        PhotonNetwork.SendRate = 30; // 얼마나 자주 데이터를 송수신할 것인지 (실제 송수신)
+        PhotonNetwork.SerializationRate = 30; // 얼마나 자주 데이터를 직렬화할 것인지 (송수신 준비)
 
         // 방장이 로드한 씬 게임에 다른 유저들도 똑같이 그 씬을 로드하도록 동기화해준다.
         // 방장(마스터 클라이언트) : 방을 만든 '소유자' (방에는 하나의 마스터 클라이언트가 존재)
