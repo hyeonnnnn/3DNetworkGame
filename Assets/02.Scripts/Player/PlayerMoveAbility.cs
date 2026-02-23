@@ -16,7 +16,7 @@ public class PlayerMoveAbility : PlayerAbility
         _animator = GetComponent<Animator>();
     }
 
-    private void Update()
+    public override void OnUpdate()
     {
         HandleMovement();
         HandleGravityAndJump();

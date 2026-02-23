@@ -19,10 +19,11 @@ public class PlayerAttackAbility : PlayerAbility
     protected override void Awake()
     {
         base.Awake();
+
         _animator = GetComponent<Animator>();
     }
 
-    private void Update()
+    public override void OnUpdate()
     {
         _attackCoolTimer -= Time.deltaTime;
 
