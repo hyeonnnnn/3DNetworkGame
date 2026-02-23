@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Unity.Cinemachine;
+using UnityEngine;
 
 public class PlayerRotateAbility : PlayerAbility
 {
@@ -11,6 +12,9 @@ public class PlayerRotateAbility : PlayerAbility
     {
         base.Awake();
         Cursor.lockState = CursorLockMode.Locked;
+
+        CinemachineCamera vcam = GameObject.Find("FollowCamera").GetComponent<CinemachineCamera>();
+        vcam.Follow = CameraRoot.transform;
     }
 
     private void Update()
