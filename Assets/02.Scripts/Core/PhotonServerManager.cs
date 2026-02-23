@@ -47,8 +47,8 @@ public class PhotonServerManager : MonoBehaviourPunCallbacks
 
     public override void OnConnectedToMaster()
     {
-        // 포톤 서버는 로비(=채널)이라는 개념이 있다.
-        //TypedLobby lobby = new TypedLobby("3channel", LobbyType.Default);
+        // 포톤 서버는 로비(채널)라는 개념이 있다.
+        // TypedLobby lobby = new TypedLobby("3channel", LobbyType.Default);
 
         PhotonNetwork.JoinLobby(); // Default 로비 입장 시도
     }

@@ -19,8 +19,8 @@ public class PlayerRotateAbility : PlayerAbility
 
         Cursor.lockState = CursorLockMode.Locked;
 
-        CinemachineCamera vcam = GameObject.Find("FollowCamera").GetComponent<CinemachineCamera>();
-        vcam.Follow = CameraRoot.transform;
+        var vcam = Object.FindAnyObjectByType<CinemachineCamera>();
+        if (vcam != null) vcam.Follow = CameraRoot.transform;
     }
 
     public override void OnUpdate()
