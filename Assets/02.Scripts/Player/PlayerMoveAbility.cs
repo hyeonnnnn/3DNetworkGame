@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.SocialPlatforms;
 
 public class PlayerMoveAbility : MonoBehaviour
 {
@@ -20,12 +21,14 @@ public class PlayerMoveAbility : MonoBehaviour
         float v = Input.GetAxis("Vertical");
 
 
-        Vector3 direction = new Vector3(h, 0, v);
+        Vector3 direction = transform.forward * v + transform.right * h;
         direction.Normalize();
 
+        // 중력 적용
         _yVeocity -= GRAVITY * Time.deltaTime;
         direction.y = _yVeocity;
 
+        // 점프
         if (Input.GetKey(KeyCode.Space) && _characterController.isGrounded)
         {
             _yVeocity = JumpForce;
