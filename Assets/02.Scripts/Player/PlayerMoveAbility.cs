@@ -6,13 +6,15 @@ public class PlayerMoveAbility : MonoBehaviour
     public float MoveSpeed = 7f;
     public float JumpForce = 2.5f;
     private const float GRAVITY = 9.8f;
-    private float _yVeocity = 0f;
 
+    private float _yVeocity = 0f;
     private CharacterController _characterController;
+    private Animator _animator;
 
     private void Awake()
     {
         _characterController = GetComponent<CharacterController>();
+        _animator = GetComponent<Animator>();
     }
 
     private void Update()
@@ -23,6 +25,9 @@ public class PlayerMoveAbility : MonoBehaviour
 
         Vector3 direction = transform.forward * v + transform.right * h;
         direction.Normalize();
+
+        float speed = Mathf.Clamp01(new Vector2(h, v).magnitude);
+        _animator.SetFloat("Speed", speed);
 
         // 중력 적용
         _yVeocity -= GRAVITY * Time.deltaTime;
