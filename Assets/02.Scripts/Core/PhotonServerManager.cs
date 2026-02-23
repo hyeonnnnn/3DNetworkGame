@@ -56,13 +56,6 @@ public class PhotonServerManager : MonoBehaviourPunCallbacks
 
         Debug.Log($"룸 이름: {PhotonNetwork.CurrentRoom.Name}");
         Debug.Log($"플레이어 수: {PhotonNetwork.CurrentRoom.PlayerCount}");
-
-        /*        
-        Dictionary<int, Player> roomPlayers = PhotonNetwork.CurrentRoom.Players;
-        foreach(KeyValuePair<int, Player> player in roomPlayers)
-        {
-            Debug.Log($"");
-        }*/
     }
 
     public override void OnJoinRoomFailed(short returnCode, string message)
