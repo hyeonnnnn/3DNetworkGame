@@ -19,6 +19,8 @@ public class PlayerStat
     public float MaxStamina;
     public float Stamina;
 
+    public float Damage;
+
     public bool TryConsumeStamina(float amount)
     {
         if (Stamina < amount) return false;

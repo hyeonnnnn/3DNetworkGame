@@ -2,7 +2,7 @@
 using UnityEngine;
 
 // 플레이어 대표로서 외부와의 소통 또는 어빌리티들을 관리하는 역할
-public class PlayerController : MonoBehaviour, IPunObservable
+public class PlayerController : MonoBehaviour, IPunObservable, IDamageable
 {
     public PhotonView PhotonView;
     public PlayerStat Stat;
@@ -23,6 +23,11 @@ public class PlayerController : MonoBehaviour, IPunObservable
         }
     }
 
+    public void TakeDamage(float damage)
+    {
+        Stat.Health -= damage;
+    }
+
     private void RegisterToMinimapCamera()
     {
         if (MinimapCamera.Instance != null)
@@ -38,8 +43,6 @@ public class PlayerController : MonoBehaviour, IPunObservable
 
         if (stream.IsWriting)
         {
-            Debug.Log("Writing..");
-
             bool healthChanged = !Mathf.Approximately(_lastSyncedHealth, Stat.Health);
             bool staminaChanged = !Mathf.Approximately(_lastSyncedStamina, Stat.Stamina);
 
@@ -62,8 +65,6 @@ public class PlayerController : MonoBehaviour, IPunObservable
         }
         else if (stream.IsReading)
         {
-            Debug.Log("Reading..");
-
             // 이 PhotonView의 데이터를 받아야 하는 상황
             // 어떤 데이터가 오는지 확인한다.
             // 보내주는 순서대로 맵핑된다.
