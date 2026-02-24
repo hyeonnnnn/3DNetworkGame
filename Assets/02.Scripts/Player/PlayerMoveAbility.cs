@@ -2,10 +2,17 @@
 
 public class PlayerMoveAbility : PlayerAbility
 {
+    [SerializeField] private float _sprintMultiplier = 1.3f;
+    [SerializeField] private float _staminaDrainRate = 20f;
+    [SerializeField] private float _staminaRecoveryRate = 5f;
+
     private const float GRAVITY = 9.8f;
     private const float GROUNDED_STICK_FORCE = -2f;
 
-    private float _yVelocity = 0f;
+    private float _yVelocity;
+    private float _baseMoveSpeed;
+    private bool _isSprinting;
+
     private CharacterController _characterController;
     private Animator _animator;
 
@@ -16,9 +23,15 @@ public class PlayerMoveAbility : PlayerAbility
         _animator = GetComponent<Animator>();
     }
 
+    private void Start()
+    {
+        _baseMoveSpeed = _owner.Stat.MoveSpeed;
+    }
+
     public override void OnUpdate()
     {
         HandleMovement();
+        HandleSprint();
         HandleGravityAndJump();
     }
 
@@ -41,6 +54,32 @@ public class PlayerMoveAbility : PlayerAbility
         _characterController.Move(velocity * Time.deltaTime);
     }
     
+    private void HandleSprint()
+    {
+        bool trySprint = Input.GetKey(KeyCode.LeftShift);
+        bool hasStamina = _owner.Stat.Stamina > 0;
+
+        if (trySprint && hasStamina && !_isSprinting)
+        {
+            _isSprinting = true;
+            _owner.Stat.MoveSpeed = _baseMoveSpeed * _sprintMultiplier;
+        }
+        else if ((!trySprint || !hasStamina) && _isSprinting)
+        {
+            _isSprinting = false;
+            _owner.Stat.MoveSpeed = _baseMoveSpeed;
+        }
+
+        if (_isSprinting)
+        {
+            _owner.Stat.DrainStamina(_staminaDrainRate * Time.deltaTime);
+        }
+        else
+        {
+            _owner.Stat.RecoverStamina(_staminaRecoveryRate * Time.deltaTime);
+        }
+    }
+
     private void HandleGravityAndJump()
     {
         // 중력 및 점프
@@ -50,12 +89,24 @@ public class PlayerMoveAbility : PlayerAbility
 
             if (Input.GetKeyDown(KeyCode.Space))
             {
-                _yVelocity = _owner.Stat.JumpPower;
+                TryJump();
             }
         }
         else
         {
             _yVelocity -= GRAVITY * Time.deltaTime;
         }
+    }
+
+    private void TryJump()
+    {
+        if (!_owner.Stat.TryConsumeStamina(_owner.Stat.JumpStaminaCost)) return;
+
+        Jump();
+    }
+
+    private void Jump()
+    {
+        _yVelocity = _owner.Stat.JumpPower;
     }
 }
