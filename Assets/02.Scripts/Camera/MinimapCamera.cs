@@ -2,13 +2,22 @@
 
 public class MinimapCamera : MonoBehaviour
 {
-    [SerializeField] private bool _x, _y, _z;
+    public static MinimapCamera Instance { get; private set; }
+
+    [SerializeField] private bool _followX, _followY, _followZ;
 
     private Transform _target;
 
-    public void SetTarget(Transform target)
+    private void Awake()
     {
-        _target = target;
+        if (Instance != null && Instance != this)
+        {
+            Destroy(gameObject);
+        }
+        else
+        {
+            Instance = this;
+        }
     }
 
     private void Update()
@@ -16,10 +25,15 @@ public class MinimapCamera : MonoBehaviour
         if (_target == null) return;
 
         transform.position = new Vector3(
-            _x ? _target.position.x : transform.position.x,
-            _y ? _target.position.y : transform.position.y,
-            _z ? _target.position.z : transform.position.z);
+            _followX ? _target.position.x : transform.position.x,
+            _followY ? _target.position.y : transform.position.y,
+            _followZ ? _target.position.z : transform.position.z);
 
         transform.rotation = Quaternion.Euler(90f, _target.eulerAngles.y, 0f);
+    }
+
+    public void SetTarget(Transform target)
+    {
+        _target = target;
     }
 }

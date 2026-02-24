@@ -7945,9 +7945,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15cc8264e465bb54bb5b0fe06dc1fc7e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MinimapCamera
-  _x: 1
-  _y: 0
-  _z: 1
+  _followX: 1
+  _followY: 0
+  _followZ: 1
 --- !u!1001 &1042930785
 PrefabInstance:
   m_ObjectHideFlags: 0

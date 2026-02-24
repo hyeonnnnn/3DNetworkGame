@@ -5,9 +5,6 @@ public class PlayerMinimapIcon : MonoBehaviour
 {
     [SerializeField] private SpriteRenderer _iconRenderer;
 
-    private readonly Color _myColor = new Color(0f, 0.46f, 1f);
-    private readonly Color _otherColor = new Color(1f, 0.15f, 0f);
-
     private void Start()
     {
         var photonView = GetComponentInParent<PhotonView>();
@@ -15,11 +12,11 @@ public class PlayerMinimapIcon : MonoBehaviour
 
         if (photonView.IsMine)
         {
-            _iconRenderer.color = _myColor;
+            _iconRenderer.color = PlayerVisuals.MyColor;
         }
         else
         {
-            _iconRenderer.color = _otherColor;
+            _iconRenderer.color = PlayerVisuals.OtherColor;
         }
     }
 }

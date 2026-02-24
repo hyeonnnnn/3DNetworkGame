@@ -25,10 +25,9 @@ public class PlayerController : MonoBehaviour, IPunObservable
 
     private void RegisterToMinimapCamera()
     {
-        var minimapCamera = FindAnyObjectByType<MinimapCamera>();
-        if (minimapCamera != null)
+        if (MinimapCamera.Instance != null)
         {
-            minimapCamera.SetTarget(transform);
+            MinimapCamera.Instance.SetTarget(transform);
         }
     }
 
