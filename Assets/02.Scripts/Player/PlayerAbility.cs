@@ -2,7 +2,7 @@
 
 public abstract class PlayerAbility : MonoBehaviour
 {
-    protected PlayerController _owner {  get; private set; }
+    protected PlayerController _owner { get; private set; }
 
     protected virtual void Awake()
     {
@@ -14,5 +14,5 @@ public abstract class PlayerAbility : MonoBehaviour
         if (_owner.PhotonView.IsMine == true) OnUpdate();
     }
 
-    abstract public void OnUpdate();
+    public abstract void OnUpdate();
 }

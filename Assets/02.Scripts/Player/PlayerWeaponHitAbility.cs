@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using Photon.Pun;
 
 public class PlayerWeaponHitAbility : PlayerAbility
 {
@@ -9,13 +10,17 @@ public class PlayerWeaponHitAbility : PlayerAbility
 
     private void OnTriggerEnter(Collider other)
     {
+        if (_owner.PhotonView.IsMine == false) return;
         if (other.transform == _owner.transform) return;
 
-        Debug.Log("충돌");
-
-        if (other.TryGetComponent<IDamageable>(out var damageable))
+        if (other.TryGetComponent<PlayerController>(out var otherPlayer))
         {
-            other.GetComponent<IDamageable>().TakeDamage(_owner.Stat.Damage);
+            Debug.Log("충돌");
+            
+            // 상대방의 TakeDamage를 RPC로 호출한다.
+            otherPlayer.PhotonView.RPC(nameof(PlayerController.TakeDamage), RpcTarget.All, _owner.Stat.Damage);
+
+            _owner.GetAbility<PlayerWeaponColliderAbility>().DeactiveCollider();
         }
     }
 }

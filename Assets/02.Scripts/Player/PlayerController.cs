@@ -23,9 +23,15 @@ public class PlayerController : MonoBehaviour, IPunObservable, IDamageable
         }
     }
 
+    [PunRPC]
     public void TakeDamage(float damage)
     {
         Stat.Health -= damage;
+    }
+
+    public T GetAbility<T>() where T : PlayerAbility
+    {
+        return GetComponentInChildren<T>();
     }
 
     private void RegisterToMinimapCamera()

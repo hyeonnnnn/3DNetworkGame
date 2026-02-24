@@ -14,12 +14,12 @@ public class PlayerWeaponColliderAbility : PlayerAbility
 
     }
 
-    private void DeactiveCollider()
+    public void DeactiveCollider()
     {
         _collider.enabled = false;
     }
 
-    private void ActiveCollider()
+    public void ActiveCollider()
     {
         _collider.enabled = true;
     }
