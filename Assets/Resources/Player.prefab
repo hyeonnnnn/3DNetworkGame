@@ -921,7 +921,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &8366770258486056325
 Transform:
   m_ObjectHideFlags: 0
@@ -1027,7 +1027,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlayerMoveAbility
   _sprintMultiplier: 2
   _staminaDrainRate: 20
-  _staminaRecoveryRate: 5
+  _staminaRecoveryRate: 10
 --- !u!114 &93887915586751733
 MonoBehaviour:
   m_ObjectHideFlags: 0
