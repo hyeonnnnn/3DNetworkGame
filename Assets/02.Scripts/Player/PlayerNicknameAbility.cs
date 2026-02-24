@@ -11,11 +11,11 @@ public class PlayerNicknameAbility : PlayerAbility
 
         if (_owner.PhotonView.IsMine)
         {
-            _nicknameTextUI.color = Color.green;
+            _nicknameTextUI.color = PlayerVisuals.MyColor;
         }
         else
         {
-            _nicknameTextUI.color = Color.red;
+            _nicknameTextUI.color = PlayerVisuals.OtherColor;
         }
     }
 

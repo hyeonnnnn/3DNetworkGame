@@ -15,6 +15,22 @@ public class PlayerController : MonoBehaviour, IPunObservable
         PhotonView = GetComponent<PhotonView>();
     }
 
+    private void Start()
+    {
+        if (PhotonView.IsMine)
+        {
+            RegisterToMinimapCamera();
+        }
+    }
+
+    private void RegisterToMinimapCamera()
+    {
+        if (MinimapCamera.Instance != null)
+        {
+            MinimapCamera.Instance.SetTarget(transform);
+        }
+    }
+
     // 데이터 동기화를 위한 데이터 읽기, 쓰기 메서드
     public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
     {
