@@ -1,12 +1,12 @@
 ﻿using UnityEngine;
 
-abstract public class PlayerAbility : MonoBehaviour
+public abstract class PlayerAbility : MonoBehaviour
 {
     protected PlayerController _owner {  get; private set; }
 
     protected virtual void Awake()
     {
-        _owner = GetComponent<PlayerController>();
+        _owner = GetComponentInParent<PlayerController>();
     }
 
     private void Update()
