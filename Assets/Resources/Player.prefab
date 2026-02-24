@@ -910,6 +910,7 @@ GameObject:
   - component: {fileID: 949180594807332927}
   - component: {fileID: 7007646998828590417}
   - component: {fileID: 5474452744999577442}
+  - component: {fileID: 8038950273658742589}
   - component: {fileID: 7458187642148376964}
   - component: {fileID: 5432211246048737938}
   - component: {fileID: 39953377155840646}
@@ -1092,6 +1093,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerWeaponAbility
   _collider: {fileID: 6951772584892354034}
+--- !u!114 &8038950273658742589
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1925558831921278335}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e36e5ba0ba2e2cd40abb103fc879faaf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerDanceAbility
 --- !u!114 &7458187642148376964
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1174,7 +1187,7 @@ MonoBehaviour:
   ShowParameterInspector: 1
   m_SynchronizeParameters:
   - Type: 9
-    SynchronizeType: 1
+    SynchronizeType: 0
     Name: Attack1
   - Type: 9
     SynchronizeType: 1
@@ -1185,6 +1198,9 @@ MonoBehaviour:
   - Type: 1
     SynchronizeType: 2
     Name: Speed
+  - Type: 9
+    SynchronizeType: 0
+    Name: Dance
   m_SynchronizeLayers:
   - SynchronizeType: 1
     LayerIndex: 0
