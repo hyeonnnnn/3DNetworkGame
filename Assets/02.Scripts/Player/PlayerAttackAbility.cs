@@ -35,11 +35,12 @@ public class PlayerAttackAbility : PlayerAbility
 
     private void TryAttack()
     {
-        if (_attackCoolTimer > 0f)
-            return;
+        if (_attackCoolTimer > 0f) return;
+        if (_owner.Stat.Stamina < _owner.Stat.AttackStaminaCost) return;
 
         _attackCoolTimer = _owner.Stat.AttackCoolTime;
         Attack();
+        _owner.Stat.Stamina -= _owner.Stat.AttackStaminaCost;
     }
 
     private void Attack()

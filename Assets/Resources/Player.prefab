@@ -918,7 +918,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &8366770258486056325
 Transform:
   m_ObjectHideFlags: 0
@@ -1002,7 +1002,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlayerMoveAbility
   _sprintMultiplier: 2
   _staminaDrainRate: 20
-  _staminaRecoveryRate: 10
+  _staminaRecoveryRate: 5
 --- !u!114 &93887915586751733
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1070,9 +1070,11 @@ MonoBehaviour:
   PhotonView: {fileID: 5432211246048737938}
   Stat:
     MoveSpeed: 8
-    JumpPower: 8
     RotationSpeed: 130
-    AttackCoolTime: 1.5
+    JumpPower: 8
+    JumpStaminaCost: 10
+    AttackCoolTime: 0.8
+    AttackStaminaCost: 10
     MaxHealth: 100
     Health: 100
     MaxStamina: 100
@@ -1099,7 +1101,7 @@ MonoBehaviour:
   - {fileID: 7458187642148376964}
   - {fileID: 39953377155840646}
   - {fileID: 6303179756829302144}
-  sceneViewId: 1
+  sceneViewId: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
 --- !u!114 &39953377155840646

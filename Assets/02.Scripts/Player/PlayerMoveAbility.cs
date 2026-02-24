@@ -4,7 +4,7 @@ public class PlayerMoveAbility : PlayerAbility
 {
     [SerializeField] private float _sprintMultiplier = 1.3f;
     [SerializeField] private float _staminaDrainRate = 20f;
-    [SerializeField] private float _staminaRecoveryRate = 10f;
+    [SerializeField] private float _staminaRecoveryRate = 5f;
 
     private const float GRAVITY = 9.8f;
     private const float GROUNDED_STICK_FORCE = -2f;
@@ -91,12 +91,25 @@ public class PlayerMoveAbility : PlayerAbility
 
             if (Input.GetKeyDown(KeyCode.Space))
             {
-                _yVelocity = _owner.Stat.JumpPower;
+                TryJump();
             }
         }
         else
         {
             _yVelocity -= GRAVITY * Time.deltaTime;
         }
+    }
+
+    private void TryJump()
+    {
+        if (_owner.Stat.Stamina < _owner.Stat.JumpStaminaCost) return;
+
+        Jump();
+        _owner.Stat.Stamina -= _owner.Stat.JumpStaminaCost;
+    }
+
+    private void Jump()
+    {
+        _yVelocity = _owner.Stat.JumpPower;
     }
 }
