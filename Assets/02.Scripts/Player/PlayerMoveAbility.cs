@@ -72,13 +72,11 @@ public class PlayerMoveAbility : PlayerAbility
 
         if (_isSprinting)
         {
-            _owner.Stat.Stamina -= _staminaDrainRate * Time.deltaTime;
-            _owner.Stat.Stamina = Mathf.Max(0, _owner.Stat.Stamina);
+            _owner.Stat.DrainStamina(_staminaDrainRate * Time.deltaTime);
         }
         else
         {
-            _owner.Stat.Stamina += _staminaRecoveryRate * Time.deltaTime;
-            _owner.Stat.Stamina = Mathf.Min(_owner.Stat.MaxStamina, _owner.Stat.Stamina);
+            _owner.Stat.RecoverStamina(_staminaRecoveryRate * Time.deltaTime);
         }
     }
 
@@ -102,10 +100,9 @@ public class PlayerMoveAbility : PlayerAbility
 
     private void TryJump()
     {
-        if (_owner.Stat.Stamina < _owner.Stat.JumpStaminaCost) return;
+        if (!_owner.Stat.TryConsumeStamina(_owner.Stat.JumpStaminaCost)) return;
 
         Jump();
-        _owner.Stat.Stamina -= _owner.Stat.JumpStaminaCost;
     }
 
     private void Jump()
