@@ -8,7 +8,14 @@ public class SpawnManager : MonoBehaviour
 
     private void Awake()
     {
-        Instance = this;
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
     }
 
     public Vector3 GetRandomSpawnPoint()

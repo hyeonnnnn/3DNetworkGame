@@ -28,7 +28,6 @@ public class PlayerStatusAbility : PlayerAbility
 
     public override void OnUpdate() { }
 
-    [PunRPC]
     private void UpdateHealthUI()
     {
         if (_healthImage == null) return;
@@ -36,7 +35,6 @@ public class PlayerStatusAbility : PlayerAbility
         _healthImage.fillAmount = _owner.Stat.Health / _owner.Stat.MaxHealth;
     }
 
-    [PunRPC]
     private void UpdateStaminaUI()
     {
         if (_staminaImage == null) return;
