@@ -78,7 +78,17 @@ public class PhotonServerManager : MonoBehaviourPunCallbacks
             Debug.Log($"{player.Value.NickName} : {player.Value.ActorNumber}");
         }
 
-        PhotonNetwork.Instantiate("Player", Vector3.zero, Quaternion.identity);
+        SpawnPlayer();
+    }
+
+    private void SpawnPlayer()
+    {
+        Vector3 spawnPosition = Vector3.zero;
+        if (SpawnManager.Instance != null)
+        {
+            spawnPosition = SpawnManager.Instance.GetRandomSpawnPoint();
+        }
+        PhotonNetwork.Instantiate("Player", spawnPosition, Quaternion.identity);
     }
 
     // 랜덤방 입장에 실패하면 자동으로 호출되는 콜백 함수
