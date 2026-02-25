@@ -1,4 +1,5 @@
 ﻿using Photon.Pun;
+using System;
 using System.Collections;
 using UnityEngine;
 
@@ -12,6 +13,8 @@ public class PlayerController : MonoBehaviour, IPunObservable, IDamageable
     public bool IsMine => PhotonView.IsMine;
     public float Damage => Stat.Damage;
     public bool IsDead { get; private set; }
+
+    public static event Action<int> OnPlayerDied;
 
     private float _lastSyncedHealth;
     private float _lastSyncedStamina;
@@ -59,10 +62,9 @@ public class PlayerController : MonoBehaviour, IPunObservable, IDamageable
     {
         IsDead = true;
 
-        PhotonRoomManager.Instance.NotifyPlayerDeath(attackActorNumber);
+        OnPlayerDied?.Invoke(attackActorNumber);
         RPC_PlayDie();
 
-        // 5초 후 체력, 스태미나 Max로 랜덤한 위치에 리스폰
         StartCoroutine(Coroutine_Respawn());
     }
 

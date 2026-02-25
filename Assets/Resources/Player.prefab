@@ -911,6 +911,7 @@ GameObject:
   - component: {fileID: 7007646998828590417}
   - component: {fileID: 5474452744999577442}
   - component: {fileID: 8038950273658742589}
+  - component: {fileID: 3046869238074334999}
   - component: {fileID: 7458187642148376964}
   - component: {fileID: 5432211246048737938}
   - component: {fileID: 39953377155840646}
@@ -1108,6 +1109,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e36e5ba0ba2e2cd40abb103fc879faaf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerDanceAbility
+--- !u!114 &3046869238074334999
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1925558831921278335}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e6ebf6bd99d33d64d950c095365ca8ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerCoinDropAbility
+  _coinPrefab: {fileID: 1126470237653282223, guid: 54bbaeb21a67e664fb285a936766772c, type: 3}
+  _minDropCount: 3
+  _maxDropCount: 6
 --- !u!114 &7458187642148376964
 MonoBehaviour:
   m_ObjectHideFlags: 0
