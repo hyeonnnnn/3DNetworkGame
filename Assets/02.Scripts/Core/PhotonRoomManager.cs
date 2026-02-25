@@ -34,7 +34,7 @@ public class PhotonRoomManager : MonoBehaviourPunCallbacks
         _room = PhotonNetwork.CurrentRoom;
         OnDataChanged?.Invoke();
 
-        SpawnManager.Instance.SpawnPlayer(); // 1줄로 줄이기...
+        SpawnManager.Instance.SpawnPlayer();
     }
 
     // 새로운 플레이어가 방에 들어오면 호출되는 함수
@@ -53,9 +53,14 @@ public class PhotonRoomManager : MonoBehaviourPunCallbacks
 
     public void NotifyPlayerDeath(int attackerActorNumber)
     {
-        string attackerNickname = _room.Players[attackerActorNumber].NickName;
-        string victimNickname = PhotonNetwork.LocalPlayer.NickName;
-
-        OnPlayerDeath?.Invoke(attackerNickname, victimNickname);
+        if (_room.Players.TryGetValue(attackerActorNumber, out Player attacker))
+        {
+            string victimNickname = PhotonNetwork.LocalPlayer.NickName;
+            OnPlayerDeath?.Invoke(attacker.NickName, victimNickname);
+        }
+        else
+        {
+            Debug.LogWarning($"공격자 정보를 찾을 수 없습니다. ActorNumber: {attackerActorNumber}");
+        }
     }
 }

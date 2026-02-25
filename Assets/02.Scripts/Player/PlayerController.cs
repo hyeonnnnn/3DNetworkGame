@@ -42,7 +42,7 @@ public class PlayerController : MonoBehaviour, IPunObservable, IDamageable
     }
 
     [PunRPC]
-    public void TakeDamage(float damage, int attackActorNumber)
+    public void TakeDamage(float damage, int attackerActorNumber)
     {
         if (IsDead) return;
 
@@ -51,7 +51,7 @@ public class PlayerController : MonoBehaviour, IPunObservable, IDamageable
 
         if (Stat.Health <= 0)
         {
-            Die(attackActorNumber);
+            Die(attackerActorNumber);
         }
     }
 
