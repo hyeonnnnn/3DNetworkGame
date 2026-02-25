@@ -3450,7 +3450,7 @@ namespace Photon.Realtime
                     }
                     else
                     {
-                        this.InRoomCallbackTargets.OnPlayerEnteredRoom(originatingPlayer);
+                        this.InRoomCallbackTargets.NotifyPlayerEnteredRoom(originatingPlayer);
                     }
                     break;
 
@@ -3482,7 +3482,7 @@ namespace Photon.Realtime
                         }
                     }
                     // finally, send notification that a player left
-                    this.InRoomCallbackTargets.OnPlayerLeftRoom(originatingPlayer);
+                    this.InRoomCallbackTargets.NotifyPlayerLeftRoom(originatingPlayer);
                     break;
 
                 case EventCode.PropertiesChanged:
@@ -4110,7 +4110,7 @@ namespace Photon.Realtime
         /// If your game starts with a certain number of players, this callback can be useful to check the
         /// Room.playerCount and find out if you can start.
         /// </remarks>
-        void OnPlayerEnteredRoom(Player newPlayer);
+        void NotifyPlayerEnteredRoom(Player newPlayer);
 
         /// <summary>
         /// Called when a remote player left the room or became inactive. Check otherPlayer.IsInactive.
@@ -4125,7 +4125,7 @@ namespace Photon.Realtime
         /// If the player is not just inactive, it gets removed from the Room.Players dictionary, before
         /// the callback is called.
         /// </remarks>
-        void OnPlayerLeftRoom(Player otherPlayer);
+        void NotifyPlayerLeftRoom(Player otherPlayer);
 
 
         /// <summary>
@@ -4489,23 +4489,23 @@ namespace Photon.Realtime
             this.client = client;
         }
 
-        public void OnPlayerEnteredRoom(Player newPlayer)
+        public void NotifyPlayerEnteredRoom(Player newPlayer)
         {
             this.client.UpdateCallbackTargets();
 
             foreach (IInRoomCallbacks target in this)
             {
-                target.OnPlayerEnteredRoom(newPlayer);
+                target.NotifyPlayerEnteredRoom(newPlayer);
             }
         }
 
-        public void OnPlayerLeftRoom(Player otherPlayer)
+        public void NotifyPlayerLeftRoom(Player otherPlayer)
         {
             this.client.UpdateCallbackTargets();
 
             foreach (IInRoomCallbacks target in this)
             {
-                target.OnPlayerLeftRoom(otherPlayer);
+                target.NotifyPlayerLeftRoom(otherPlayer);
             }
         }
 

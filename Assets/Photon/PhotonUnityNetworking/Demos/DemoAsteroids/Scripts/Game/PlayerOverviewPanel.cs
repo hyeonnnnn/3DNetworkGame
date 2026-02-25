@@ -47,7 +47,7 @@ namespace Photon.Pun.Demo.Asteroids
 
         #region PUN CALLBACKS
 
-        public override void OnPlayerLeftRoom(Player otherPlayer)
+        public override void NotifyPlayerLeftRoom(Player otherPlayer)
         {
             GameObject go = null;
             if (this.playerListEntries.TryGetValue(otherPlayer.ActorNumber, out go))

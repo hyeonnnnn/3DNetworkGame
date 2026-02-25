@@ -154,7 +154,7 @@ namespace Photon.Pun.Demo.Asteroids
             playerListEntries = null;
         }
 
-        public override void OnPlayerEnteredRoom(Player newPlayer)
+        public override void NotifyPlayerEnteredRoom(Player newPlayer)
         {
             GameObject entry = Instantiate(PlayerListEntryPrefab);
             entry.transform.SetParent(InsideRoomPanel.transform);
@@ -166,7 +166,7 @@ namespace Photon.Pun.Demo.Asteroids
             StartGameButton.gameObject.SetActive(CheckPlayersReady());
         }
 
-        public override void OnPlayerLeftRoom(Player otherPlayer)
+        public override void NotifyPlayerLeftRoom(Player otherPlayer)
         {
             Destroy(playerListEntries[otherPlayer.ActorNumber].gameObject);
             playerListEntries.Remove(otherPlayer.ActorNumber);

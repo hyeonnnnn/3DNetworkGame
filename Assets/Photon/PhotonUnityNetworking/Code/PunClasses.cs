@@ -1,4 +1,4 @@
-// ----------------------------------------------------------------------------
+﻿// ----------------------------------------------------------------------------
 // <copyright file="PunClasses.cs" company="Exit Games GmbH">
 //   PhotonNetwork Framework for Unity - Copyright (C) 2018 Exit Games GmbH
 // </copyright>
@@ -271,7 +271,7 @@ namespace Photon.Pun
         /// If your game starts with a certain number of players, this callback can be useful to check the
         /// Room.playerCount and find out if you can start.
         /// </remarks>
-        public virtual void OnPlayerEnteredRoom(Player newPlayer)
+        public virtual void NotifyPlayerEnteredRoom(Player newPlayer)
         {
         }
 
@@ -288,7 +288,7 @@ namespace Photon.Pun
         /// If the player is not just inactive, it gets removed from the Room.Players dictionary, before
         /// the callback is called.
         /// </remarks>
-        public virtual void OnPlayerLeftRoom(Player otherPlayer)
+        public virtual void NotifyPlayerLeftRoom(Player otherPlayer)
         {
         }
 

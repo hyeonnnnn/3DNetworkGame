@@ -1,4 +1,4 @@
-// ----------------------------------------------------------------------------
+﻿// ----------------------------------------------------------------------------
 // <copyright file="PhotonHandler.cs" company="Exit Games GmbH">
 //   PhotonNetwork Framework for Unity - Copyright (C) 2018 Exit Games GmbH
 // </copyright>
@@ -336,7 +336,7 @@ namespace Photon.Pun
         }
 
 
-        public void OnPlayerEnteredRoom(Player newPlayer)
+        public void NotifyPlayerEnteredRoom(Player newPlayer)
         {
             // note: if the master client becomes inactive, someone else becomes master. so there is no case where the active master client reconnects
             // what may happen is that the Master Client disconnects locally and uses ReconnectAndRejoin before anyone (including the server) notices.
@@ -373,7 +373,7 @@ namespace Photon.Pun
 
         }
 
-        public void OnPlayerLeftRoom(Player otherPlayer)
+        public void NotifyPlayerLeftRoom(Player otherPlayer)
         {
             var views = PhotonNetwork.PhotonViewCollection;
 

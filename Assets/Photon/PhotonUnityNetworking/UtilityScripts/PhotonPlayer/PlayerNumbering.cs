@@ -96,12 +96,12 @@ namespace Photon.Pun.UtilityScripts
             PhotonNetwork.LocalPlayer.CustomProperties.Remove(PlayerNumbering.RoomPlayerIndexedProp);
         }
 
-        public override void OnPlayerEnteredRoom(Player newPlayer)
+        public override void NotifyPlayerEnteredRoom(Player newPlayer)
         {
             this.RefreshData();
         }
 
-        public override void OnPlayerLeftRoom(Player otherPlayer)
+        public override void NotifyPlayerLeftRoom(Player otherPlayer)
         {
             this.RefreshData();
         }

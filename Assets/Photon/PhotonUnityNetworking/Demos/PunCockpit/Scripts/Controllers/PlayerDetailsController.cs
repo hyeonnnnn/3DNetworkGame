@@ -142,7 +142,7 @@ namespace Photon.Pun.Demo.Cockpit
 
         #region Photon CallBacks
 
-        public override void OnPlayerLeftRoom(Player otherPlayer)
+        public override void NotifyPlayerLeftRoom(Player otherPlayer)
         {
             NotInRoomLabel.SetActive(otherPlayer == _player);
             ContentPanel.SetActive(otherPlayer != _player);
