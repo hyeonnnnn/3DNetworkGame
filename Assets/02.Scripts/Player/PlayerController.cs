@@ -26,6 +26,14 @@ public class PlayerController : MonoBehaviour, IPunObservable, IDamageable
         }
     }
 
+    private void RegisterToMinimapCamera()
+    {
+        if (MinimapCamera.Instance != null)
+        {
+            MinimapCamera.Instance.SetTarget(transform);
+        }
+    }
+
     [PunRPC]
     public void TakeDamage(float damage)
     {
@@ -47,13 +55,6 @@ public class PlayerController : MonoBehaviour, IPunObservable, IDamageable
         return GetComponentInChildren<T>();
     }
 
-    private void RegisterToMinimapCamera()
-    {
-        if (MinimapCamera.Instance != null)
-        {
-            MinimapCamera.Instance.SetTarget(transform);
-        }
-    }
 
     // 데이터 동기화를 위한 데이터 읽기, 쓰기 메서드
     public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)

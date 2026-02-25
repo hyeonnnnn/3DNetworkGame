@@ -1,0 +1,26 @@
+﻿using UnityEngine;
+
+public class SpawnManager : MonoBehaviour
+{
+    public static SpawnManager Instance { get; private set; }
+
+    [SerializeField] private Transform[] _spawnPoints;
+
+    private void Awake()
+    {
+        Instance = this;
+    }
+
+    public Vector3 GetRandomSpawnPoint()
+    {
+        if (_spawnPoints == null || _spawnPoints.Length == 0)
+        {
+            return Vector3.zero;
+        }
+
+        int index = Random.Range(0, _spawnPoints.Length);
+
+        Debug.Log(_spawnPoints[index].position);
+        return _spawnPoints[index].position;
+    }
+}
