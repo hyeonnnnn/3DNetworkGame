@@ -1079,6 +1079,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5944e67f2ef15642be446bca28b0d46, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerStatusAbility
+  _healthImage: {fileID: 6315999168875909886}
   _staminaImage: {fileID: 5653132319188087518}
 --- !u!114 &5474452744999577442
 MonoBehaviour:
@@ -1201,6 +1202,9 @@ MonoBehaviour:
   - Type: 9
     SynchronizeType: 0
     Name: Dance
+  - Type: 9
+    SynchronizeType: 0
+    Name: Die
   m_SynchronizeLayers:
   - SynchronizeType: 1
     LayerIndex: 0
@@ -3790,6 +3794,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5316046413323435984, guid: 351baf954590df348a71254a311227b1, type: 3}
   m_PrefabInstance: {fileID: 2188903125996662620}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &6315999168875909886 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5316046414844214690, guid: 351baf954590df348a71254a311227b1, type: 3}
+  m_PrefabInstance: {fileID: 2188903125996662620}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &2620287025386200818
 PrefabInstance:
   m_ObjectHideFlags: 0

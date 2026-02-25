@@ -4,18 +4,24 @@ using UnityEngine;
 // 플레이어 대표로서 외부와의 소통 또는 어빌리티들을 관리하는 역할
 public class PlayerController : MonoBehaviour, IPunObservable, IDamageable
 {
-    public PhotonView PhotonView;
     public PlayerStat Stat;
+    public PhotonView PhotonView;
+    private Animator _animator;
 
     public bool IsMine => PhotonView.IsMine;
     public float Damage => Stat.Damage;
+    public bool IsDead { get; private set; }
 
     private float _lastSyncedHealth;
     private float _lastSyncedStamina;
 
+    private const string DieStateName = "Die";
+    private static readonly int s_dieTrigger = Animator.StringToHash(DieStateName);
+
     private void Awake()
     {
         PhotonView = GetComponent<PhotonView>();
+        _animator = GetComponent<Animator>();
     }
 
     private void Start()
@@ -23,6 +29,14 @@ public class PlayerController : MonoBehaviour, IPunObservable, IDamageable
         if (PhotonView.IsMine)
         {
             RegisterToMinimapCamera();
+        }
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.V))
+        {
+            TakeDamage(20);
         }
     }
 
@@ -37,7 +51,30 @@ public class PlayerController : MonoBehaviour, IPunObservable, IDamageable
     [PunRPC]
     public void TakeDamage(float damage)
     {
+        if (IsDead) return;
+
+        Debug.Log("데미지 입음");
         Stat.ApplyDamage(damage);
+
+        if (Stat.Health <= 0)
+        {
+            Die();
+        }
+    }
+
+    private void Die()
+    {
+        IsDead = true;
+
+        RPC_PlayDie();
+
+        // 5초 후 체력, 스태미나 Max로 랜덤한 위치에 리스폰
+    }
+
+    [PunRPC]
+    private void RPC_PlayDie()
+    {
+        _animator.SetTrigger(s_dieTrigger);
     }
 
     public void TakeDamageRPC(float damage)

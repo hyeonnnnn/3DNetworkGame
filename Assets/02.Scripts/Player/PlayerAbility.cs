@@ -11,6 +11,7 @@ public abstract class PlayerAbility : MonoBehaviour
 
     private void Update()
     {
+        if (_owner.IsDead) return;
         if (_owner.PhotonView.IsMine == true) OnUpdate();
     }
 
