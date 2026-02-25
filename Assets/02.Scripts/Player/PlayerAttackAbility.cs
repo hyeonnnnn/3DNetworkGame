@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using Photon.Pun;
 
 public enum AttackSequenceMode
 {
@@ -11,16 +12,17 @@ public class PlayerAttackAbility : PlayerAbility
     [SerializeField] private AttackSequenceMode _attackSequenceMode;
 
     private Animator _animator;
-    private float _attackCoolTimer = 0f;
+    private PhotonView _photonView;
+    private float _attackCoolTimer;
+    private int _currentIndex;
 
-    private int _currentIndex = 0;
     private readonly string[] _attackTriggers = { "Attack1", "Attack2", "Attack3" };
 
     protected override void Awake()
     {
         base.Awake();
-
         _animator = GetComponent<Animator>();
+        _photonView = GetComponent<PhotonView>();
     }
 
     public override void OnUpdate()
@@ -36,26 +38,44 @@ public class PlayerAttackAbility : PlayerAbility
     private void TryAttack()
     {
         if (_attackCoolTimer > 0f) return;
-        if (_owner.Stat.Stamina < _owner.Stat.AttackStaminaCost) return;
+        if (_owner.Stat.TryConsumeStamina(_owner.Stat.AttackStaminaCost) == false) return;
 
         _attackCoolTimer = _owner.Stat.AttackCoolTime;
         Attack();
-        _owner.Stat.Stamina -= _owner.Stat.AttackStaminaCost;
     }
 
     private void Attack()
     {
+        int attackIndex = GetAttackIndex();
+        
+        // 1. 일반 메서드 호출 방식
+        PlayAttackAnimation(attackIndex);
+
+        // 2. RPC 메서드 호출 방식
+        // 다른 컴퓨터에 있는 내 플레이어 오브젝트의 RPC_PlayAttack()를 실행한다.
+        _photonView.RPC(nameof(RPC_PlayAttack), RpcTarget.Others, attackIndex);
+    }
+
+    private int GetAttackIndex()
+    {
         if (_attackSequenceMode == AttackSequenceMode.Sequential)
         {
-            string trigger = _attackTriggers[_currentIndex];
-            _animator.SetTrigger(trigger);
-
+            int index = _currentIndex;
             _currentIndex = (_currentIndex + 1) % _attackTriggers.Length;
+            return index;
         }
-        else if (_attackSequenceMode == AttackSequenceMode.Random)
-        {
-            int randomIndex = Random.Range(0, _attackTriggers.Length);
-            _animator.SetTrigger(_attackTriggers[randomIndex]);
-        }
+
+        return Random.Range(0, _attackTriggers.Length);
+    }
+
+    private void PlayAttackAnimation(int index)
+    {
+        _animator.SetTrigger(_attackTriggers[index]);
+    }
+
+    [PunRPC]
+    private void RPC_PlayAttack(int index)
+    {
+        PlayAttackAnimation(index);
     }
 }

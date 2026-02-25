@@ -19,6 +19,13 @@ public class PlayerStat
     public float MaxStamina;
     public float Stamina;
 
+    public float Damage;
+
+    public void ApplyDamage(float amount)
+    {
+        Health = Mathf.Max(0, Health - amount);
+    }
+
     public bool TryConsumeStamina(float amount)
     {
         if (Stamina < amount) return false;
