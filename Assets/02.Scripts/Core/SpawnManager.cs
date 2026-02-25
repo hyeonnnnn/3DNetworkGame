@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Photon.Pun;
+using UnityEngine;
 
 public class SpawnManager : MonoBehaviour
 {
@@ -16,6 +17,12 @@ public class SpawnManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
+    }
+
+    public void SpawnPlayer()
+    {
+        Vector3 spawnPosition = GetRandomSpawnPoint();
+        PhotonNetwork.Instantiate("Player", spawnPosition, Quaternion.identity);
     }
 
     public Vector3 GetRandomSpawnPoint()
