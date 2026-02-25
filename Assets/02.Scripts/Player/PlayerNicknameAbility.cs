@@ -4,12 +4,12 @@ using UnityEngine;
 public class PlayerNicknameAbility : PlayerAbility
 {
     [SerializeField] private TextMeshProUGUI _nicknameTextUI;
-    private Camera _camera;
+    private Transform _cameraTransform;
 
     protected override void Awake()
     {
         base.Awake();
-        _camera = Camera.main;
+        _cameraTransform = Camera.main.transform;
     }
 
     private void Start()
@@ -28,6 +28,6 @@ public class PlayerNicknameAbility : PlayerAbility
 
     public override void OnUpdate()
     {
-        _nicknameTextUI.transform.forward = _camera.transform.forward;
+        _nicknameTextUI.transform.forward = _cameraTransform.forward;
     }
 }

@@ -7,6 +7,9 @@ public class PlayerController : MonoBehaviour, IPunObservable, IDamageable
     public PhotonView PhotonView;
     public PlayerStat Stat;
 
+    public bool IsMine => PhotonView.IsMine;
+    public float Damage => Stat.Damage;
+
     private float _lastSyncedHealth;
     private float _lastSyncedStamina;
 
@@ -26,7 +29,17 @@ public class PlayerController : MonoBehaviour, IPunObservable, IDamageable
     [PunRPC]
     public void TakeDamage(float damage)
     {
-        Stat.Health -= damage;
+        Stat.ApplyDamage(damage);
+    }
+
+    public void TakeDamageRPC(float damage)
+    {
+        PhotonView.RPC(nameof(TakeDamage), RpcTarget.All, damage);
+    }
+
+    public void DeactiveWeaponCollider()
+    {
+        GetAbility<PlayerWeaponColliderAbility>().DeactiveCollider();
     }
 
     public T GetAbility<T>() where T : PlayerAbility

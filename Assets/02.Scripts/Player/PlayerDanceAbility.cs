@@ -6,8 +6,15 @@ public class PlayerDanceAbility : PlayerAbility
     private Animator _animator;
     private PhotonView _photonView;
 
-    private void Start()
+    private const string DanceStateName = "Dance";
+    private const string MoveTreeStateName = "MoveTree";
+
+    private static readonly int s_danceTrigger = Animator.StringToHash(DanceStateName);
+    private static readonly int s_moveTreeState = Animator.StringToHash(MoveTreeStateName);
+
+    protected override void Awake()
     {
+        base.Awake();
         _animator = GetComponent<Animator>();
         _photonView = GetComponent<PhotonView>();
     }
@@ -33,21 +40,21 @@ public class PlayerDanceAbility : PlayerAbility
 
     private void StopDance()
     {
-        if (_animator.GetCurrentAnimatorStateInfo(0).IsName("Dance"))
+        if (_animator.GetCurrentAnimatorStateInfo(0).IsName(DanceStateName))
         {
-            _animator.Play("MoveTree", 0, 0f);
+            _animator.Play(s_moveTreeState, 0, 0f);
         }
     }
 
     private void PlayDance()
     {
-        _animator.SetTrigger("Dance");
+        _animator.SetTrigger(s_danceTrigger);
         _photonView.RPC(nameof(RPC_PlayDance), RpcTarget.Others);
     }
 
     [PunRPC]
     private void RPC_PlayDance()
     {
-        _animator.SetTrigger("Dance");
+        _animator.SetTrigger(s_danceTrigger);
     }
 }
