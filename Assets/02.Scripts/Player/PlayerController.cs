@@ -37,7 +37,7 @@ public class PlayerController : MonoBehaviour, IPunObservable, IDamageable
     {
         if (Input.GetKeyDown(KeyCode.V))
         {
-            TakeDamage(20);
+            TakeDamage(5);
         }
     }
 
@@ -54,8 +54,12 @@ public class PlayerController : MonoBehaviour, IPunObservable, IDamageable
     {
         if (IsDead) return;
 
-        Debug.Log("데미지 입음");
         Stat.ApplyDamage(damage);
+
+        if (IsMine)
+        {
+            CameraShake.Instance?.Shake();
+        }
 
         if (Stat.Health <= 0)
         {
