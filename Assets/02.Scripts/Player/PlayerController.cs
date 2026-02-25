@@ -1,4 +1,5 @@
 ﻿using Photon.Pun;
+using System.Collections;
 using UnityEngine;
 
 // 플레이어 대표로서 외부와의 소통 또는 어빌리티들을 관리하는 역할
@@ -69,6 +70,31 @@ public class PlayerController : MonoBehaviour, IPunObservable, IDamageable
         RPC_PlayDie();
 
         // 5초 후 체력, 스태미나 Max로 랜덤한 위치에 리스폰
+        StartCoroutine(Coroutine_Respawn());
+    }
+
+    private IEnumerator Coroutine_Respawn()
+    {
+        yield return new WaitForSeconds(5f);
+
+        Respawn();
+    }
+
+    private void Respawn()
+    {
+        // 체력, 스태미나 회복
+        Stat.Health = Stat.MaxHealth;
+        Stat.Stamina = Stat.MaxStamina;
+
+        // 랜덤 위치로 이동
+        CharacterController characterController = GetComponent<CharacterController>();
+        if (characterController != null) characterController.enabled = false;
+        transform.position = SpawnManager.Instance.GetRandomSpawnPoint();
+        if (characterController != null) characterController.enabled = true;
+
+        // 상태 초기화
+        IsDead = false;
+        _animator.Rebind();
     }
 
     [PunRPC]
