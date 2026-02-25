@@ -1079,6 +1079,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5944e67f2ef15642be446bca28b0d46, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerStatusAbility
+  _healthBar: {fileID: 6315999168152473731}
+  _staminaBar: {fileID: 5653132320716796067}
   _healthImage: {fileID: 6315999168875909886}
   _staminaImage: {fileID: 5653132319188087518}
 --- !u!114 &5474452744999577442
@@ -1118,7 +1120,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5dd83e8abbad0c44f8c1c269421813c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerController
-  PhotonView: {fileID: 5432211246048737938}
   Stat:
     MoveSpeed: 8
     RotationSpeed: 130
@@ -1131,6 +1132,7 @@ MonoBehaviour:
     MaxStamina: 100
     Stamina: 100
     Damage: 20
+  PhotonView: {fileID: 5432211246048737938}
 --- !u!114 &5432211246048737938
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3589,6 +3591,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &5653132320716796067 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5316046413323435999, guid: 351baf954590df348a71254a311227b1, type: 3}
+  m_PrefabInstance: {fileID: 555510558950641532}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &5653132320716796076 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5316046413323435984, guid: 351baf954590df348a71254a311227b1, type: 3}
@@ -3789,6 +3796,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 351baf954590df348a71254a311227b1, type: 3}
+--- !u!1 &6315999168152473731 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5316046413323435999, guid: 351baf954590df348a71254a311227b1, type: 3}
+  m_PrefabInstance: {fileID: 2188903125996662620}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &6315999168152473740 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5316046413323435984, guid: 351baf954590df348a71254a311227b1, type: 3}

@@ -17,10 +17,8 @@ public class SpawnManager : MonoBehaviour
         {
             return Vector3.zero;
         }
-
         int index = Random.Range(0, _spawnPoints.Length);
 
-        Debug.Log(_spawnPoints[index].position);
         return _spawnPoints[index].position;
     }
 }

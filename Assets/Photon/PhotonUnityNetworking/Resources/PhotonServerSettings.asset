@@ -42,6 +42,9 @@ MonoBehaviour:
   - RPC_PlayDance
   - RPC_PlayAttack
   - TakeDamage
+  - RPC_PlayDie
+  - UpdateHealthUI
+  - UpdateStaminaUI
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 1

@@ -26,8 +26,13 @@ public class PlayerNicknameAbility : PlayerAbility
         }
     }
 
-    public override void OnUpdate()
+    public void Update()
     {
         _nicknameTextUI.transform.forward = _cameraTransform.forward;
+    }
+
+    public override void OnUpdate()
+    {
+        
     }
 }
