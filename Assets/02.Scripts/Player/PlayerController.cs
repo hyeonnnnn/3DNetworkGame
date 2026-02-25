@@ -33,14 +33,6 @@ public class PlayerController : MonoBehaviour, IPunObservable, IDamageable
         }
     }
 
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.V))
-        {
-            TakeDamage(20);
-        }
-    }
-
     private void RegisterToMinimapCamera()
     {
         if (MinimapCamera.Instance != null)
@@ -50,7 +42,7 @@ public class PlayerController : MonoBehaviour, IPunObservable, IDamageable
     }
 
     [PunRPC]
-    public void TakeDamage(float damage)
+    public void TakeDamage(float damage, int attackActorNumber)
     {
         if (IsDead) return;
 
@@ -59,14 +51,15 @@ public class PlayerController : MonoBehaviour, IPunObservable, IDamageable
 
         if (Stat.Health <= 0)
         {
-            Die();
+            Die(attackActorNumber);
         }
     }
 
-    private void Die()
+    private void Die(int attackActorNumber)
     {
         IsDead = true;
 
+        PhotonRoomManager.Instance.NotifyPlayerDeath(attackActorNumber);
         RPC_PlayDie();
 
         // 5초 후 체력, 스태미나 Max로 랜덤한 위치에 리스폰
@@ -103,9 +96,9 @@ public class PlayerController : MonoBehaviour, IPunObservable, IDamageable
         _animator.SetTrigger(s_dieTrigger);
     }
 
-    public void TakeDamageRPC(float damage)
+    public void TakeDamageRPC(float damage, int attackActorNumber)
     {
-        PhotonView.RPC(nameof(TakeDamage), RpcTarget.All, damage);
+        PhotonView.RPC(nameof(TakeDamage), RpcTarget.All, damage, attackActorNumber);
     }
 
     public void DeactiveWeaponCollider()

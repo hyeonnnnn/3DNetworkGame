@@ -72,7 +72,7 @@ namespace Photon.Pun.Demo.Cockpit
             PlayerDetailManager.SetPlayerTarget(player);
         }
 
-        public override void OnPlayerEnteredRoom(Player newPlayer)
+        public override void NotifyPlayerEnteredRoom(Player newPlayer)
         {
             //Debug.Log("PlayerListView:OnPlayerEnteredRoom:" + newPlayer);
 
@@ -115,7 +115,7 @@ namespace Photon.Pun.Demo.Cockpit
             StartCoroutine("UpdateUIPing");
         }
 
-        public override void OnPlayerLeftRoom(Player otherPlayer)
+        public override void NotifyPlayerLeftRoom(Player otherPlayer)
         {
             //Debug.Log("OnPlayerLeftRoom isinactive " + otherPlayer.IsInactive);
 

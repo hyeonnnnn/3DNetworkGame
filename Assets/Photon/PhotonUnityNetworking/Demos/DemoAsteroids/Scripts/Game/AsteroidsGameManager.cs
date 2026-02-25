@@ -131,7 +131,7 @@ namespace Photon.Pun.Demo.Asteroids
             }
         }
 
-        public override void OnPlayerLeftRoom(Player otherPlayer)
+        public override void NotifyPlayerLeftRoom(Player otherPlayer)
         {
             CheckEndOfGame();
         }

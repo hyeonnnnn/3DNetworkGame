@@ -1,4 +1,4 @@
-// --------------------------------------------------------------------------------------------------------------------
+﻿// --------------------------------------------------------------------------------------------------------------------
 // <copyright file="PhotonTeamsManager.cs" company="Exit Games GmbH">
 //   Part of: Photon Unity Utilities, 
 // </copyright>
@@ -205,7 +205,7 @@ namespace Photon.Pun.UtilityScripts
             }
         }
 
-        void IInRoomCallbacks.OnPlayerLeftRoom(Player otherPlayer)
+        void IInRoomCallbacks.NotifyPlayerLeftRoom(Player otherPlayer)
         {
             if (otherPlayer.IsInactive)
             {
@@ -220,7 +220,7 @@ namespace Photon.Pun.UtilityScripts
             }
         }
 
-        void IInRoomCallbacks.OnPlayerEnteredRoom(Player newPlayer)
+        void IInRoomCallbacks.NotifyPlayerEnteredRoom(Player newPlayer)
         {
             PhotonTeam team = newPlayer.GetPhotonTeam();
             if (team == null)

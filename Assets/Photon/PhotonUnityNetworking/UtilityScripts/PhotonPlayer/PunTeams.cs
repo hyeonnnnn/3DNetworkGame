@@ -1,4 +1,4 @@
-// --------------------------------------------------------------------------------------------------------------------
+﻿// --------------------------------------------------------------------------------------------------------------------
 // <copyright file="PunTeams.cs" company="Exit Games GmbH">
 //   Part of: Photon Unity Utilities, 
 // </copyright>
@@ -86,12 +86,12 @@ namespace Photon.Pun.UtilityScripts
             this.UpdateTeams();
         }
 
-        public override void OnPlayerLeftRoom(Player otherPlayer)
+        public override void NotifyPlayerLeftRoom(Player otherPlayer)
         {
             this.UpdateTeams();
         }
 
-        public override void OnPlayerEnteredRoom(Player newPlayer)
+        public override void NotifyPlayerEnteredRoom(Player newPlayer)
         {
             this.UpdateTeams();
         }
