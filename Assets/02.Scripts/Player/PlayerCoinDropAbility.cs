@@ -1,10 +1,10 @@
-using UnityEngine;
+﻿using UnityEngine;
+using Photon.Pun;
 
 public class PlayerCoinDropAbility : PlayerAbility
 {
     [SerializeField] private GameObject _coinPrefab;
-    [SerializeField] private int _minDropCount = 1;
-    [SerializeField] private int _maxDropCount = 6;
+    [SerializeField] private Vector3 SpawnPosition = new Vector3(0, 0f, 0);
 
     private void OnEnable()
     {
@@ -20,19 +20,7 @@ public class PlayerCoinDropAbility : PlayerAbility
     {
         if (_owner.IsMine == false) return;
 
-        DropCoins();
-    }
-
-    private void DropCoins()
-    {
-        int count = Random.Range(_minDropCount, _maxDropCount + 1);
-
-        for (int i = 0; i < count; i++)
-        {
-            Vector2 randomOffset = Random.insideUnitCircle * 0.5f;
-            Vector3 spawnPosition = transform.position + new Vector3(randomOffset.x, 0f, randomOffset.y);
-            Instantiate(_coinPrefab, spawnPosition, Quaternion.identity);
-        }
+        ItemObjectFactory.Instance.RequestMakeScoreItems(transform.position + SpawnPosition);
     }
 
     public override void OnUpdate() { }

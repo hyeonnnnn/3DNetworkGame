@@ -1122,8 +1122,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerCoinDropAbility
   _coinPrefab: {fileID: 1126470237653282223, guid: 54bbaeb21a67e664fb285a936766772c, type: 3}
-  _minDropCount: 3
-  _maxDropCount: 6
+  SpawnPosition: {x: 0, y: 0.5, z: 0}
 --- !u!114 &7458187642148376964
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1148,6 +1147,7 @@ MonoBehaviour:
     MaxStamina: 100
     Stamina: 100
     Damage: 20
+    Score: 0
   PhotonView: {fileID: 5432211246048737938}
 --- !u!114 &5432211246048737938
 MonoBehaviour:
