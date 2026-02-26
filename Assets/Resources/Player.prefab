@@ -922,7 +922,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &8366770258486056325
 Transform:
   m_ObjectHideFlags: 0
@@ -1122,7 +1122,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerCoinDropAbility
   _coinPrefab: {fileID: 1126470237653282223, guid: 54bbaeb21a67e664fb285a936766772c, type: 3}
-  SpawnPosition: {x: 0, y: 0.5, z: 0}
+  SpawnPosition: {x: 0, y: 0, z: 0}
 --- !u!114 &7458187642148376964
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -20,7 +20,7 @@ public class ItemObjectFactory : MonoBehaviour
     // 메서드 명이 Request로 시작하는 게 유지보수에 좋다.
     public void RequestMakeScoreItems(Vector3 makePosition)
     {
-        if (PhotonNetwork.IsMasterClient) 
+        if (PhotonNetwork.IsMasterClient)
         {
             // 내가 방장이면 내 함수 호출
             MakeScoreItems(makePosition);
@@ -35,11 +35,15 @@ public class ItemObjectFactory : MonoBehaviour
     [PunRPC]
     private void MakeScoreItems(Vector3 makePosition)
     {
+        Debug.Log("MakeScoreItems");
+
         int count = Random.Range(_minDropCount, _maxDropCount + 1);
 
         for (int i = 0; i < count; i++)
         {
-            PhotonNetwork.InstantiateRoomObject("Coin", makePosition, Quaternion.identity);
+            Vector2 randomOffset = Random.insideUnitCircle * 1.5f;
+            Vector3 spawnPosition = makePosition + new Vector3(randomOffset.x, 0f, randomOffset.y);
+            PhotonNetwork.InstantiateRoomObject("Coin", spawnPosition, Quaternion.identity);
         }
     }
 
