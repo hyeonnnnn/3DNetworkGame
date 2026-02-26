@@ -86,7 +86,7 @@ public class PlayerController : MonoBehaviour, IPunObservable, IDamageable
         Stat.Stamina = Stat.MaxStamina;
 
         // 랜덤 위치로 이동
-        transform.position = SpawnManager.Instance.GetRandomSpawnPoint();
+        transform.position = PlayerSpawner.Instance.GetRandomSpawnPoint();
         if (_characterController != null) _characterController.enabled = true;
 
         // 상태 초기화

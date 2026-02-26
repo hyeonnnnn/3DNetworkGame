@@ -44,7 +44,7 @@ public class PhotonRoomManager : MonoBehaviourPunCallbacks
         _room = PhotonNetwork.CurrentRoom;
         OnDataChanged?.Invoke();
 
-        SpawnManager.Instance.SpawnPlayer();
+        PlayerSpawner.Instance.Spawn();
     }
 
     // 새로운 플레이어가 방에 들어오면 호출되는 함수

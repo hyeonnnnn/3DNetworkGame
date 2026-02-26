@@ -1,11 +1,17 @@
 ﻿using Photon.Pun;
 using UnityEngine;
 
-public class Coin : MonoBehaviourPun
+public class Coin : MonoBehaviour
 {
     [SerializeField] private int _scoreValue = 1;
 
     private bool _isCollected;
+    private PhotonView _photonView;
+
+    private void Awake()
+    {
+        _photonView = GetComponentInParent<PhotonView>();
+    }
 
     private void OnTriggerEnter(Collider other)
     {
@@ -19,6 +25,6 @@ public class Coin : MonoBehaviourPun
         _isCollected = true;
         player.Stat.AddScore(_scoreValue);
 
-        ItemObjectFactory.Instance.RequestDelete(photonView.ViewID);
+        ItemObjectFactory.Instance.RequestDelete(_photonView.ViewID);
     }
 }
