@@ -1,4 +1,5 @@
 ﻿using Photon.Pun;
+using System;
 using System.Collections;
 using UnityEngine;
 
@@ -8,10 +9,13 @@ public class PlayerController : MonoBehaviour, IPunObservable, IDamageable
     public PlayerStat Stat;
     public PhotonView PhotonView;
     private Animator _animator;
+    private CharacterController _characterController;
 
     public bool IsMine => PhotonView.IsMine;
     public float Damage => Stat.Damage;
     public bool IsDead { get; private set; }
+
+    public static event Action<int> OnPlayerDied;
 
     private float _lastSyncedHealth;
     private float _lastSyncedStamina;
@@ -23,6 +27,7 @@ public class PlayerController : MonoBehaviour, IPunObservable, IDamageable
     {
         PhotonView = GetComponent<PhotonView>();
         _animator = GetComponent<Animator>();
+        _characterController = GetComponent<CharacterController>();
     }
 
     private void Start()
@@ -41,12 +46,12 @@ public class PlayerController : MonoBehaviour, IPunObservable, IDamageable
         }
     }
 
+
     [PunRPC]
     public void TakeDamage(float damage, int attackerActorNumber)
     {
         if (IsDead) return;
 
-        Debug.Log("데미지 입음");
         Stat.ApplyDamage(damage);
 
         if (Stat.Health <= 0)
@@ -59,10 +64,12 @@ public class PlayerController : MonoBehaviour, IPunObservable, IDamageable
     {
         IsDead = true;
 
-        PhotonRoomManager.Instance.NotifyPlayerDeath(attackActorNumber);
+        OnPlayerDied?.Invoke(attackActorNumber);
         RPC_PlayDie();
 
-        // 5초 후 체력, 스태미나 Max로 랜덤한 위치에 리스폰
+        // 콜라이더 비활성화
+        _characterController.enabled = false;
+
         StartCoroutine(Coroutine_Respawn());
     }
 
@@ -80,10 +87,8 @@ public class PlayerController : MonoBehaviour, IPunObservable, IDamageable
         Stat.Stamina = Stat.MaxStamina;
 
         // 랜덤 위치로 이동
-        CharacterController characterController = GetComponent<CharacterController>();
-        if (characterController != null) characterController.enabled = false;
-        transform.position = SpawnManager.Instance.GetRandomSpawnPoint();
-        if (characterController != null) characterController.enabled = true;
+        transform.position = PlayerSpawner.Instance.GetRandomSpawnPoint();
+        if (_characterController != null) _characterController.enabled = true;
 
         // 상태 초기화
         IsDead = false;
@@ -104,6 +109,11 @@ public class PlayerController : MonoBehaviour, IPunObservable, IDamageable
     public void DeactiveWeaponCollider()
     {
         GetAbility<PlayerWeaponColliderAbility>().DeactiveCollider();
+    }
+
+    public void AddScore(int amount)
+    {
+        Stat.AddScore(amount);
     }
 
     public T GetAbility<T>() where T : PlayerAbility

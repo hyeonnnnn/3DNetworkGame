@@ -45,6 +45,9 @@ MonoBehaviour:
   - RPC_PlayDie
   - UpdateHealthUI
   - UpdateStaminaUI
+  - MakeScoreItem
+  - MakeScoreItems
+  - DeleteItem
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 1
