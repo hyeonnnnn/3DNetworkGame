@@ -46,6 +46,7 @@ public class PlayerController : MonoBehaviour, IPunObservable, IDamageable
         }
     }
 
+
     [PunRPC]
     public void TakeDamage(float damage, int attackerActorNumber)
     {
@@ -108,6 +109,11 @@ public class PlayerController : MonoBehaviour, IPunObservable, IDamageable
     public void DeactiveWeaponCollider()
     {
         GetAbility<PlayerWeaponColliderAbility>().DeactiveCollider();
+    }
+
+    public void AddScore(int amount)
+    {
+        Stat.AddScore(amount);
     }
 
     public T GetAbility<T>() where T : PlayerAbility

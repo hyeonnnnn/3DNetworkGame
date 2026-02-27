@@ -23,7 +23,7 @@ public class Coin : MonoBehaviour
         if (player.IsDead) return;
 
         _isCollected = true;
-        player.Stat.AddScore(_scoreValue);
+        player.AddScore(_scoreValue);
 
         ItemObjectFactory.Instance.RequestDelete(_photonView.ViewID);
     }
