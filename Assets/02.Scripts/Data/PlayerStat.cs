@@ -4,6 +4,8 @@ using UnityEngine;
 [Serializable]
 public class PlayerStat
 {
+    public float Damage;
+
     public float MoveSpeed;
     public float RotationSpeed;
 
@@ -18,8 +20,6 @@ public class PlayerStat
 
     public float MaxStamina;
     public float Stamina;
-
-    public float Damage;
 
     public int Score;
 

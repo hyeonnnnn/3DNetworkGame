@@ -1136,6 +1136,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerController
   Stat:
+    Damage: 20
     MoveSpeed: 8
     RotationSpeed: 130
     JumpPower: 8
@@ -1146,7 +1147,6 @@ MonoBehaviour:
     Health: 100
     MaxStamina: 100
     Stamina: 100
-    Damage: 20
     Score: 0
   PhotonView: {fileID: 5432211246048737938}
 --- !u!114 &5432211246048737938

@@ -18029,6 +18029,7 @@ MonoBehaviour:
   _spawnInterval: 5
   _spawnHeight: 10
   _coinsPerSpawn: 3
+  _spreadRadius: 1.5
 --- !u!4 &1960677227
 Transform:
   m_ObjectHideFlags: 0
@@ -19742,6 +19743,98 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 1056934839}
   m_SourcePrefab: {fileID: 100100000, guid: 27e25e3bc7ba5f640aea250f9a3842bd, type: 3}
+--- !u!1001 &7739924548229026738
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1096117795225664196, guid: eaff935cbf56dc0448331fa18cad6038, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 11.81229
+      objectReference: {fileID: 0}
+    - target: {fileID: 1096117795225664196, guid: eaff935cbf56dc0448331fa18cad6038, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.2255664
+      objectReference: {fileID: 0}
+    - target: {fileID: 1096117795225664196, guid: eaff935cbf56dc0448331fa18cad6038, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -7.558579
+      objectReference: {fileID: 0}
+    - target: {fileID: 1096117795225664196, guid: eaff935cbf56dc0448331fa18cad6038, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: -0.20552275
+      objectReference: {fileID: 0}
+    - target: {fileID: 1096117795225664196, guid: eaff935cbf56dc0448331fa18cad6038, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1096117795225664196, guid: eaff935cbf56dc0448331fa18cad6038, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.97865236
+      objectReference: {fileID: 0}
+    - target: {fileID: 1096117795225664196, guid: eaff935cbf56dc0448331fa18cad6038, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1096117795225664196, guid: eaff935cbf56dc0448331fa18cad6038, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1096117795225664196, guid: eaff935cbf56dc0448331fa18cad6038, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -203.71999
+      objectReference: {fileID: 0}
+    - target: {fileID: 1096117795225664196, guid: eaff935cbf56dc0448331fa18cad6038, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1190657633237884115, guid: eaff935cbf56dc0448331fa18cad6038, type: 3}
+      propertyPath: m_Size.x
+      value: 1.36
+      objectReference: {fileID: 0}
+    - target: {fileID: 1190657633237884115, guid: eaff935cbf56dc0448331fa18cad6038, type: 3}
+      propertyPath: m_Size.y
+      value: 1.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 1190657633237884115, guid: eaff935cbf56dc0448331fa18cad6038, type: 3}
+      propertyPath: m_Size.z
+      value: 2.64
+      objectReference: {fileID: 0}
+    - target: {fileID: 1190657633237884115, guid: eaff935cbf56dc0448331fa18cad6038, type: 3}
+      propertyPath: m_Center.y
+      value: 0.85
+      objectReference: {fileID: 0}
+    - target: {fileID: 3891553542054102046, guid: eaff935cbf56dc0448331fa18cad6038, type: 3}
+      propertyPath: PhotonView
+      value: 
+      objectReference: {fileID: 8620010274675223191}
+    - target: {fileID: 4324508043282543519, guid: eaff935cbf56dc0448331fa18cad6038, type: 3}
+      propertyPath: sceneViewId
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8338244958634632050, guid: eaff935cbf56dc0448331fa18cad6038, type: 3}
+      propertyPath: m_Name
+      value: Bear
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: eaff935cbf56dc0448331fa18cad6038, type: 3}
+--- !u!114 &8620010274675223191 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4324508043282543519, guid: eaff935cbf56dc0448331fa18cad6038, type: 3}
+  m_PrefabInstance: {fileID: 7739924548229026738}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: PhotonUnityNetworking::Photon.Pun.PhotonView
 --- !u!1001 &8730119247996590798
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -19832,3 +19925,4 @@ SceneRoots:
   - {fileID: 1236959230}
   - {fileID: 1182248460}
   - {fileID: 105278484}
+  - {fileID: 7739924548229026738}
