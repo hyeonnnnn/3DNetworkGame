@@ -23,11 +23,6 @@ public class PlayerStat
 
     public int Score;
 
-    public void AddScore(int amount)
-    {
-        Score += amount;
-    }
-
     public void ApplyDamage(float amount)
     {
         Health = Mathf.Max(0, Health - amount);

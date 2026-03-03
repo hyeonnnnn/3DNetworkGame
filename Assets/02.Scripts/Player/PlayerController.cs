@@ -111,11 +111,6 @@ public class PlayerController : MonoBehaviour, IPunObservable, IDamageable
         GetAbility<PlayerWeaponColliderAbility>().DeactiveCollider();
     }
 
-    public void AddScore(int amount)
-    {
-        Stat.AddScore(amount);
-    }
-
     public T GetAbility<T>() where T : PlayerAbility
     {
         return GetComponentInChildren<T>();

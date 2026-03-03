@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class Coin : MonoBehaviour
 {
-    [SerializeField] private int _scoreValue = 1;
+    [SerializeField] private int _scoreValue = 10;
 
     private bool _isCollected;
     private PhotonView _photonView;
@@ -23,7 +23,8 @@ public class Coin : MonoBehaviour
         if (player.IsDead) return;
 
         _isCollected = true;
-        player.AddScore(_scoreValue);
+        ScoreManager.Instance.AddScore(_scoreValue);
+        Debug.Log(_scoreValue);
 
         ItemObjectFactory.Instance.RequestDelete(_photonView.ViewID);
     }
