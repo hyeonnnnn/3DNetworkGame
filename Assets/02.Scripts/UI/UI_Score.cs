@@ -21,15 +21,11 @@ public class UI_Score : MonoBehaviour
         // -> 리드온리를 반환하도록 하자.
         // 그러면 왜 게터, 세터를 쓰는지?
         // -> null을 방어하려고
-
         var scores = ScoreManager.Instance.Scores;
 
 
-        // Todo. 1등부터 3등까지 정렬
-        // ㄴ 필수: Linq에서 사용 (정리 과제)
-        //      ㄴ 무엇인지, 언제 쓰이는지, 장단점은 무엇인지
-        // Todo. 3명이 있는지 적절하게 반복문
-        List<ScoreData> scoreDatas = scores.Values.ToList();
+        // 1등부터 3등까지 내림차순 정렬
+        List<ScoreData> scoreDatas = ScoreManager.Instance.GetSortedScores();
 
         int count = Mathf.Min(_items.Count, scoreDatas.Count);
         for (int i = 0; i < count; i++)

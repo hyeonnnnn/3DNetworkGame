@@ -3,7 +3,7 @@ using Photon.Realtime;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using UnityEngine;
+using System.Linq;
 using Hashtable = ExitGames.Client.Photon.Hashtable;
 
 public class ScoreManager : MonoBehaviourPunCallbacks
@@ -13,9 +13,7 @@ public class ScoreManager : MonoBehaviourPunCallbacks
     private int _score;
 
     private Dictionary<int, ScoreData> _scores = new();
-
-    // 외부에서 수정 못하게 ReadOnlyDictionary로 반환
-    public ReadOnlyDictionary<int, ScoreData> Scores => new ReadOnlyDictionary<int, ScoreData>(_scores);
+    public ReadOnlyDictionary<int, ScoreData> Scores => new ReadOnlyDictionary<int, ScoreData>(_scores); // 외부에서 수정 못하게 ReadOnlyDictionary로 반환
 
     public static event Action OnDataChanged;
 
@@ -26,7 +24,22 @@ public class ScoreManager : MonoBehaviourPunCallbacks
 
     public override void OnJoinedRoom()
     {
-        // Start가 아니라 방에 들어갔을 때 초기화
+        // 기존 플레이어들의 점수 정보 가져오기
+        foreach (var player in PhotonNetwork.PlayerList)
+        {
+            if (player.CustomProperties.TryGetValue("score", out object scoreObj))
+            {
+                ScoreData scoreData = new ScoreData()
+                {
+                    Nickname = player.NickName,
+                    Score = (int)scoreObj
+                };
+                _scores[player.ActorNumber] = scoreData;
+            }
+        }
+        OnDataChanged?.Invoke();
+
+        // 자신의 점수 초기화
         Refresh();
     }
 
@@ -39,6 +52,11 @@ public class ScoreManager : MonoBehaviourPunCallbacks
 
         // 프로퍼티 등록
         PhotonNetwork.LocalPlayer.SetCustomProperties(hashtable);
+    }
+
+    public List<ScoreData> GetSortedScores()
+    {
+        return _scores.Values.OrderByDescending(data => data.Score).ToList();
     }
 
     public void AddScore(int score)
