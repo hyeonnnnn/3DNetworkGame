@@ -118,8 +118,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f73990d183688bc4fae80a51c36af11c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UI_ScoreItem
-  NicknameTextUI: {fileID: 0}
-  ScoreTextUI: {fileID: 0}
+  RankingTextUI: {fileID: 0}
+  NicknameTextUI: {fileID: 3333099473290157448}
+  ScoreTextUI: {fileID: 4156621342473724742}
 --- !u!1 &2353404350031498569
 GameObject:
   m_ObjectHideFlags: 0

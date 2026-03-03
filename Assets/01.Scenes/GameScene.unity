@@ -2958,6 +2958,17 @@ MonoBehaviour:
   blendDistance: 0
   weight: 1
   sharedProfile: {fileID: 11400000, guid: b9f6a89b8338ba8478fc495ec53c3c95, type: 2}
+--- !u!114 &302175025 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6641898186388986200, guid: 5d8926d072c328b45a508beda8899a3c, type: 3}
+  m_PrefabInstance: {fileID: 5717958332593487134}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
 --- !u!1001 &309920858
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3455,17 +3466,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7462569862156873362, guid: 1aba0fbf10ced5447ad5eb30f4652084, type: 3}
   m_PrefabInstance: {fileID: 349156478}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &363639696 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 4156621342473724742, guid: 5d8926d072c328b45a508beda8899a3c, type: 3}
-  m_PrefabInstance: {fileID: 5717958332593487134}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
 --- !u!1001 &377475432
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4758,17 +4758,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8407946972163067645, guid: 92101ed146e7f434cb43a3680c518e75, type: 3}
   m_PrefabInstance: {fileID: 514688873}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &526973170 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3333099473290157448, guid: 5d8926d072c328b45a508beda8899a3c, type: 3}
-  m_PrefabInstance: {fileID: 5717958332593487134}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
 --- !u!1001 &527084831
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6259,12 +6248,12 @@ MonoBehaviour:
     m_Right: 0
     m_Top: 20
     m_Bottom: 20
-  m_ChildAlignment: 4
+  m_ChildAlignment: 1
   m_Spacing: 20
   m_ChildForceExpandWidth: 1
   m_ChildForceExpandHeight: 0
   m_ChildControlWidth: 0
-  m_ChildControlHeight: 1
+  m_ChildControlHeight: 0
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
@@ -7388,6 +7377,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1311534305500314048, guid: 1850815f38acaab4085c2fb6a7ca2928, type: 3}
   m_PrefabInstance: {fileID: 882454489}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &885661816 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6641898186388986200, guid: 5d8926d072c328b45a508beda8899a3c, type: 3}
+  m_PrefabInstance: {fileID: 1025956158}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
 --- !u!1001 &888368868
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8733,6 +8733,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: UI_ScoreItem (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 1110553171975390458, guid: 5d8926d072c328b45a508beda8899a3c, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5379434276070625919, guid: 5d8926d072c328b45a508beda8899a3c, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -8763,7 +8767,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5379434276070625919, guid: 5d8926d072c328b45a508beda8899a3c, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 0
+      value: 73.333336
       objectReference: {fileID: 0}
     - target: {fileID: 5379434276070625919, guid: 5d8926d072c328b45a508beda8899a3c, type: 3}
       propertyPath: m_LocalPosition.x
@@ -8857,6 +8861,10 @@ PrefabInstance:
       propertyPath: ScoreTextUI
       value: 
       objectReference: {fileID: 960344476}
+    - target: {fileID: 7399378836624374744, guid: 5d8926d072c328b45a508beda8899a3c, type: 3}
+      propertyPath: RankingTextUI
+      value: 
+      objectReference: {fileID: 885661816}
     - target: {fileID: 7399378836624374744, guid: 5d8926d072c328b45a508beda8899a3c, type: 3}
       propertyPath: NicknameTextUI
       value: 
@@ -13768,6 +13776,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 412080990861709168, guid: 1cf8419492cc98c4aab863c4fbadddb5, type: 3}
+      propertyPath: sceneViewId
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1925558831921278335, guid: 1cf8419492cc98c4aab863c4fbadddb5, type: 3}
       propertyPath: m_Name
       value: Player
@@ -13778,7 +13790,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5432211246048737938, guid: 1cf8419492cc98c4aab863c4fbadddb5, type: 3}
       propertyPath: sceneViewId
-      value: 1
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 8366770258486056325, guid: 1cf8419492cc98c4aab863c4fbadddb5, type: 3}
       propertyPath: m_LocalPosition.x
@@ -17170,6 +17182,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 108225653778528902, guid: 3e2accafa3a5f1b40ba86cf39bcb49a7, type: 3}
   m_PrefabInstance: {fileID: 1870187204}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1876711270 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6641898186388986200, guid: 5d8926d072c328b45a508beda8899a3c, type: 3}
+  m_PrefabInstance: {fileID: 2083370423}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
 --- !u!1001 &1881818709
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -19456,6 +19479,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: UI_ScoreItem (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 1110553171975390458, guid: 5d8926d072c328b45a508beda8899a3c, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5379434276070625919, guid: 5d8926d072c328b45a508beda8899a3c, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -19486,7 +19513,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5379434276070625919, guid: 5d8926d072c328b45a508beda8899a3c, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 0
+      value: 73.333336
       objectReference: {fileID: 0}
     - target: {fileID: 5379434276070625919, guid: 5d8926d072c328b45a508beda8899a3c, type: 3}
       propertyPath: m_LocalPosition.x
@@ -19580,6 +19607,10 @@ PrefabInstance:
       propertyPath: ScoreTextUI
       value: 
       objectReference: {fileID: 2094742848}
+    - target: {fileID: 7399378836624374744, guid: 5d8926d072c328b45a508beda8899a3c, type: 3}
+      propertyPath: RankingTextUI
+      value: 
+      objectReference: {fileID: 1876711270}
     - target: {fileID: 7399378836624374744, guid: 5d8926d072c328b45a508beda8899a3c, type: 3}
       propertyPath: NicknameTextUI
       value: 
@@ -20364,10 +20395,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: UI_ScoreItem
       objectReference: {fileID: 0}
-    - target: {fileID: 3376195778999747682, guid: 5d8926d072c328b45a508beda8899a3c, type: 3}
-      propertyPath: m_Color.a
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 5379434276070625919, guid: 5d8926d072c328b45a508beda8899a3c, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -20398,7 +20425,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5379434276070625919, guid: 5d8926d072c328b45a508beda8899a3c, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 0
+      value: 73.333336
       objectReference: {fileID: 0}
     - target: {fileID: 5379434276070625919, guid: 5d8926d072c328b45a508beda8899a3c, type: 3}
       propertyPath: m_LocalPosition.x
@@ -20489,13 +20516,9 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7399378836624374744, guid: 5d8926d072c328b45a508beda8899a3c, type: 3}
-      propertyPath: ScoreTextUI
+      propertyPath: RankingTextUI
       value: 
-      objectReference: {fileID: 363639696}
-    - target: {fileID: 7399378836624374744, guid: 5d8926d072c328b45a508beda8899a3c, type: 3}
-      propertyPath: NicknameTextUI
-      value: 
-      objectReference: {fileID: 526973170}
+      objectReference: {fileID: 302175025}
     - target: {fileID: 7837299147350629725, guid: 5d8926d072c328b45a508beda8899a3c, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0

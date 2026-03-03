@@ -9,7 +9,12 @@ public class UI_Score : MonoBehaviour
 
     private void Start()
     {
-        _items = GetComponentsInChildren<UI_ScoreItem>().ToList();
+        _items = GetComponentsInChildren<UI_ScoreItem>(true).ToList();
+
+        foreach (var item in _items)
+        {
+            item.gameObject.SetActive(false);
+        }
 
         ScoreManager.OnDataChanged += Refresh;
         Refresh();
@@ -28,11 +33,19 @@ public class UI_Score : MonoBehaviour
         List<ScoreData> scoreDatas = ScoreManager.Instance.GetSortedScores();
 
         int count = Mathf.Min(_items.Count, scoreDatas.Count);
-        for (int i = 0; i < count; i++)
+        for (int i = 0; i < _items.Count; i++)
         {
-            ScoreData data = scoreDatas[i];
-            _items[i].Set(data.Nickname, data.Score.ToString());
+            if (i < count)
+            {
+                ScoreData data = scoreDatas[i];
+                string ranking = (i + 1).ToString();
+                _items[i].Set(ranking, data.Nickname, data.Score.ToString());
+                _items[i].gameObject.SetActive(true);
+            }
+            else
+            {
+                _items[i].gameObject.SetActive(false);
+            }
         }
-
     }
 }

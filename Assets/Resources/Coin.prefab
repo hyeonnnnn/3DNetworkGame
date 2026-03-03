@@ -237,4 +237,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0725fdc3367ab0e4c926d436b3a15cdc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Coin
-  _scoreValue: 10
+  _scoreValue: 200

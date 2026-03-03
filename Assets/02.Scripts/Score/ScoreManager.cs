@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using UnityEngine;
 using Hashtable = ExitGames.Client.Photon.Hashtable;
 
 public class ScoreManager : MonoBehaviourPunCallbacks
@@ -16,6 +17,7 @@ public class ScoreManager : MonoBehaviourPunCallbacks
     public ReadOnlyDictionary<int, ScoreData> Scores => new ReadOnlyDictionary<int, ScoreData>(_scores); // 외부에서 수정 못하게 ReadOnlyDictionary로 반환
 
     public static event Action OnDataChanged;
+    public static event Action<int> OnScoreAdded;
 
     private void Awake()
     {
@@ -62,6 +64,7 @@ public class ScoreManager : MonoBehaviourPunCallbacks
     public void AddScore(int score)
     {
         _score += score;
+        OnScoreAdded?.Invoke(score);
         Refresh();
     }
 
