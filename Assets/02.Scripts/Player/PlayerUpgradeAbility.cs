@@ -1,5 +1,4 @@
-﻿using Photon.Pun;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class PlayerUpgradeAbility : PlayerAbility
 {
@@ -7,44 +6,35 @@ public class PlayerUpgradeAbility : PlayerAbility
     [SerializeField] private float _weaponScaleIncrement = 0.1f;
     [SerializeField] private int _scoreThreshold = 1000;
 
-    private int _tempScore;
+    private Vector3 _initialScale;
 
     private void Start()
     {
-        if (_owner.PhotonView.IsMine)
+        if (_weapon != null)
         {
-            ScoreManager.OnScoreAdded += OnScoreAdded;
+            _initialScale = _weapon.transform.localScale;
         }
+
+        ScoreManager.OnDataChanged += UpdateWeaponScale;
     }
 
     private void OnDestroy()
     {
-        ScoreManager.OnScoreAdded -= OnScoreAdded;
+        ScoreManager.OnDataChanged -= UpdateWeaponScale;
     }
 
     public override void OnUpdate() { }
 
-    private void OnScoreAdded(int score)
-    {
-        _tempScore += score;
-
-        while (_tempScore >= _scoreThreshold)
-        {
-            _tempScore -= _scoreThreshold;
-            IncreaseWeaponScale();
-        }
-    }
-
-    private void IncreaseWeaponScale()
-    {
-        _owner.PhotonView.RPC(nameof(RPC_IncreaseWeaponScale), RpcTarget.All);
-    }
-
-    [PunRPC]
-    private void RPC_IncreaseWeaponScale()
+    private void UpdateWeaponScale()
     {
         if (_weapon == null) return;
 
-        _weapon.transform.localScale += Vector3.one * _weaponScaleIncrement;
+        int actorNumber = _owner.PhotonView.OwnerActorNr;
+        var scores = ScoreManager.Instance.Scores;
+
+        if (!scores.TryGetValue(actorNumber, out ScoreData data)) return;
+
+        int upgradeLevel = data.Score / _scoreThreshold;
+        _weapon.transform.localScale = _initialScale + Vector3.one * _weaponScaleIncrement * upgradeLevel;
     }
 }
