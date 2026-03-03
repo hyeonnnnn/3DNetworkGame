@@ -48,6 +48,7 @@ MonoBehaviour:
   - MakeScoreItem
   - MakeScoreItems
   - DeleteItem
+  - RPC_IncreaseWeaponScale
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 1
