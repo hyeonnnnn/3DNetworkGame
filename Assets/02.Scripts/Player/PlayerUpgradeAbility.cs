@@ -15,26 +15,21 @@ public class PlayerUpgradeAbility : PlayerAbility
             _initialScale = _weapon.transform.localScale;
         }
 
-        ScoreManager.OnDataChanged += UpdateWeaponScale;
+        _owner.OnScoreChanged += UpdateWeaponScale;
     }
 
     private void OnDestroy()
     {
-        ScoreManager.OnDataChanged -= UpdateWeaponScale;
+        _owner.OnScoreChanged -= UpdateWeaponScale;
     }
 
     public override void OnUpdate() { }
 
-    private void UpdateWeaponScale()
+    private void UpdateWeaponScale(int score)
     {
         if (_weapon == null) return;
 
-        int actorNumber = _owner.PhotonView.OwnerActorNr;
-        var scores = ScoreManager.Instance.Scores;
-
-        if (!scores.TryGetValue(actorNumber, out ScoreData data)) return;
-
-        int upgradeLevel = data.Score / _scoreThreshold;
+        int upgradeLevel = score / _scoreThreshold;
         _weapon.transform.localScale = _initialScale + Vector3.one * _weaponScaleIncrement * upgradeLevel;
     }
 }

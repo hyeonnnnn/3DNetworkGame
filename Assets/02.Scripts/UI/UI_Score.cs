@@ -13,7 +13,7 @@ public class UI_Score : MonoBehaviour
 
         foreach (var item in _items)
         {
-            item.gameObject.SetActive(false);
+            item.Hide();
         }
 
         ScoreManager.OnDataChanged += Refresh;
@@ -39,12 +39,12 @@ public class UI_Score : MonoBehaviour
             {
                 ScoreData data = scoreDatas[i];
                 string ranking = (i + 1).ToString();
-                _items[i].Set(ranking, data.Nickname, data.Score.ToString());
-                _items[i].gameObject.SetActive(true);
+                _items[i].Set(ranking, data.Nickname, data.Score);
+                _items[i].Show();
             }
             else
             {
-                _items[i].gameObject.SetActive(false);
+                _items[i].Hide();
             }
         }
     }

@@ -16,6 +16,9 @@ public class PlayerController : MonoBehaviour, IPunObservable, IDamageable
     public bool IsDead { get; private set; }
 
     public static event Action<int> OnPlayerDied;
+    public event Action<int> OnScoreChanged;
+
+    public int Score { get; private set; }
 
     private float _lastSyncedHealth;
     private float _lastSyncedStamina;
@@ -36,6 +39,22 @@ public class PlayerController : MonoBehaviour, IPunObservable, IDamageable
         {
             RegisterToMinimapCamera();
         }
+
+        ScoreManager.OnDataChanged += HandleScoreDataChanged;
+    }
+
+    private void OnDestroy()
+    {
+        ScoreManager.OnDataChanged -= HandleScoreDataChanged;
+    }
+
+    private void HandleScoreDataChanged()
+    {
+        var scores = ScoreManager.Instance.Scores;
+        if (!scores.TryGetValue(PhotonView.OwnerActorNr, out ScoreData data)) return;
+
+        Score = data.Score;
+        OnScoreChanged?.Invoke(Score);
     }
 
     private void RegisterToMinimapCamera()

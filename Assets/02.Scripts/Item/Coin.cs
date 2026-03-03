@@ -24,7 +24,6 @@ public class Coin : MonoBehaviour
 
         _isCollected = true;
         ScoreManager.Instance.AddScore(_scoreValue);
-        Debug.Log(_scoreValue);
 
         ItemObjectFactory.Instance.RequestDelete(_photonView.ViewID);
     }
