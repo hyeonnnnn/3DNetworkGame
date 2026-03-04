@@ -39,6 +39,7 @@ public class BearController : MonoBehaviour, IPunObservable, IDamageable, IOnEve
 
     private void OnEnable()
     {
+        // 이벤트 수신 등록
         PhotonNetwork.AddCallbackTarget(this);
     }
 
@@ -60,6 +61,7 @@ public class BearController : MonoBehaviour, IPunObservable, IDamageable, IOnEve
         _fsm.Initialize(states, MonsterState.Patrol);
     }
 
+    // 실제 데미지를 처리하는 곳
     public void TakeDamage(float damage, int attackerActorNumber)
     {
         if (IsDead) return;
@@ -75,13 +77,12 @@ public class BearController : MonoBehaviour, IPunObservable, IDamageable, IOnEve
     private void Die(int attackerActorNumber)
     {
         IsDead = true;
-
-        _fsm.Stop();
-        _agent.isStopped = true;
+        _fsm.Stop();                // AI 상태 머신 멈춤
+        _agent.isStopped = true;    // 이동 중지
         _animator.SetTrigger(s_dieTrigger);
         OnBearDied?.Invoke(attackerActorNumber);
 
-        if (PhotonNetwork.IsMasterClient)
+        if (PhotonNetwork.IsMasterClient)   // 마스터가 대표로 파괴
         {
             StartCoroutine(DestroyAfterDelay(DieAnimationDelay));
         }
@@ -93,21 +94,27 @@ public class BearController : MonoBehaviour, IPunObservable, IDamageable, IOnEve
         PhotonNetwork.Destroy(gameObject);
     }
 
+    // 요청
     public void TakeDamageRPC(float damage, int attackerActorNumber)
     {
+        // 마스터 클라이언트가 공격하는 경우 
+        // -> 바로 체력 감소
         if (PhotonNetwork.IsMasterClient)
         {
             TakeDamage(damage, attackerActorNumber);
         }
+        // 일반 플레이어가 공격하는 경우
+        // -> MasterClient에게 데미지 요청
         else
         {
-            // MasterClient에게 데미지 요청
+            // 어떤 몬스터를 / 얼마의 데미지로 / 누가 공격했는지
             object[] content = { PhotonView.ViewID, damage, attackerActorNumber };
             RaiseEventOptions options = new RaiseEventOptions { Receivers = ReceiverGroup.MasterClient };
             PhotonNetwork.RaiseEvent(BearDamageEventCode, content, options, SendOptions.SendReliable);
         }
     }
 
+    // 수신
     public void OnEvent(EventData photonEvent)
     {
         if (photonEvent.Code != BearDamageEventCode) return;
@@ -124,6 +131,7 @@ public class BearController : MonoBehaviour, IPunObservable, IDamageable, IOnEve
         }
     }
 
+    // 체력을 모든 플레이어에게 공유
     public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
     {
         if (Stat == null) return;
