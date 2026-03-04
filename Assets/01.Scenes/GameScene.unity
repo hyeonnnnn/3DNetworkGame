@@ -20264,6 +20264,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: LowpolyTerrain
       objectReference: {fileID: 0}
+    - target: {fileID: 2477219742316424569, guid: f01337c4b1a6e774cb6a6f4c3dd02910, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2477219742316589401, guid: f01337c4b1a6e774cb6a6f4c3dd02910, type: 3}
       propertyPath: m_RootOrder
       value: 3
@@ -20557,18 +20561,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1048597081549259782, guid: eaff935cbf56dc0448331fa18cad6038, type: 3}
-      propertyPath: m_SynchronizeParameters.Array.size
-      value: 38
-      objectReference: {fileID: 0}
-    - target: {fileID: 1048597081549259782, guid: eaff935cbf56dc0448331fa18cad6038, type: 3}
-      propertyPath: m_SynchronizeParameters.Array.data[37].Name
-      value: Speed
-      objectReference: {fileID: 0}
-    - target: {fileID: 1048597081549259782, guid: eaff935cbf56dc0448331fa18cad6038, type: 3}
-      propertyPath: m_SynchronizeParameters.Array.data[37].Type
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 1096117795225664196, guid: eaff935cbf56dc0448331fa18cad6038, type: 3}
       propertyPath: m_LocalPosition.x
       value: 11.81229
@@ -20609,50 +20601,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1190657633237884115, guid: eaff935cbf56dc0448331fa18cad6038, type: 3}
-      propertyPath: m_Size.x
-      value: 1.36
-      objectReference: {fileID: 0}
-    - target: {fileID: 1190657633237884115, guid: eaff935cbf56dc0448331fa18cad6038, type: 3}
-      propertyPath: m_Size.y
-      value: 1.8
-      objectReference: {fileID: 0}
-    - target: {fileID: 1190657633237884115, guid: eaff935cbf56dc0448331fa18cad6038, type: 3}
-      propertyPath: m_Size.z
-      value: 2.64
-      objectReference: {fileID: 0}
-    - target: {fileID: 1190657633237884115, guid: eaff935cbf56dc0448331fa18cad6038, type: 3}
-      propertyPath: m_Center.y
-      value: 0.85
-      objectReference: {fileID: 0}
-    - target: {fileID: 3891553542054102046, guid: eaff935cbf56dc0448331fa18cad6038, type: 3}
-      propertyPath: PhotonView
-      value: 
-      objectReference: {fileID: 8620010274675223191}
-    - target: {fileID: 3891553542054102046, guid: eaff935cbf56dc0448331fa18cad6038, type: 3}
-      propertyPath: Stat.Damage
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 3891553542054102046, guid: eaff935cbf56dc0448331fa18cad6038, type: 3}
-      propertyPath: Stat.Health
-      value: 50
-      objectReference: {fileID: 0}
-    - target: {fileID: 3891553542054102046, guid: eaff935cbf56dc0448331fa18cad6038, type: 3}
-      propertyPath: Stat.MaxHealth
-      value: 50
-      objectReference: {fileID: 0}
-    - target: {fileID: 3891553542054102046, guid: eaff935cbf56dc0448331fa18cad6038, type: 3}
-      propertyPath: Stat.MoveSpeed
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 3891553542054102046, guid: eaff935cbf56dc0448331fa18cad6038, type: 3}
-      propertyPath: Stat.RotationSpeed
-      value: 100
-      objectReference: {fileID: 0}
-    - target: {fileID: 3891553542054102046, guid: eaff935cbf56dc0448331fa18cad6038, type: 3}
-      propertyPath: Stat.AttackCoolTime
-      value: 5
-      objectReference: {fileID: 0}
     - target: {fileID: 4324508043282543519, guid: eaff935cbf56dc0448331fa18cad6038, type: 3}
       propertyPath: sceneViewId
       value: 3
@@ -20661,85 +20609,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Bear
       objectReference: {fileID: 0}
-    - target: {fileID: 8338244958634632050, guid: eaff935cbf56dc0448331fa18cad6038, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 8338244958634632050, guid: eaff935cbf56dc0448331fa18cad6038, type: 3}
-      insertIndex: 4
-      addedObject: {fileID: 8620010274675223194}
-    - targetCorrespondingSourceObject: {fileID: 8338244958634632050, guid: eaff935cbf56dc0448331fa18cad6038, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 8620010274675223193}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: eaff935cbf56dc0448331fa18cad6038, type: 3}
---- !u!1 &7962199819742899128 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8338244958634632050, guid: eaff935cbf56dc0448331fa18cad6038, type: 3}
-  m_PrefabInstance: {fileID: 7739924548229026738}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &8620010274675223191 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 4324508043282543519, guid: eaff935cbf56dc0448331fa18cad6038, type: 3}
-  m_PrefabInstance: {fileID: 7739924548229026738}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7962199819742899128}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: PhotonUnityNetworking::Photon.Pun.PhotonView
---- !u!195 &8620010274675223193
-NavMeshAgent:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7962199819742899128}
-  m_Enabled: 1
-  m_AgentTypeID: 0
-  m_Radius: 0.5
-  m_Speed: 3.5
-  m_Acceleration: 8
-  avoidancePriority: 50
-  m_AngularSpeed: 120
-  m_StoppingDistance: 0
-  m_AutoTraverseOffMeshLink: 1
-  m_AutoBraking: 1
-  m_AutoRepath: 1
-  m_Height: 2
-  m_BaseOffset: 0
-  m_WalkableMask: 4294967295
-  m_ObstacleAvoidanceType: 4
---- !u!114 &8620010274675223194
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7962199819742899128}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3240336ef5693bd46bf3c0643126ecbc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::BearMoveAbility
-  _detectionRange: 10
-  _attackRange: 2
-  _playerLayer:
-    m_Bits: 256
-  _patrolRadius: 15
-  _idleDuration: 2
-  _owner: {fileID: 0}
-  _agent: {fileID: 0}
-  _animator: {fileID: 0}
-  _currentState: 0
-  _targetPlayer: {fileID: 0}
-  _patrolDestination: {x: 0, y: 0, z: 0}
-  _idleTimer: 0
-  _attackTimer: 0
 --- !u!1001 &8730119247996590798
 PrefabInstance:
   m_ObjectHideFlags: 0
