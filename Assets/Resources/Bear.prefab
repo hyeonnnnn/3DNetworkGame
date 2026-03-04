@@ -2078,6 +2078,7 @@ GameObject:
   - component: {fileID: 7003699223657282494}
   - component: {fileID: 1762253943843442374}
   - component: {fileID: 5686222668918629206}
+  - component: {fileID: 8440178366544380995}
   - component: {fileID: 3891553542054102046}
   - component: {fileID: 8071282424469974606}
   - component: {fileID: 4324508043282543519}
@@ -2201,6 +2202,18 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1.64, y: 1.44, z: 2.62}
   m_Center: {x: 0, y: 0.75, z: 0}
+--- !u!114 &8440178366544380995
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8338244958634632050}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 69c9d5d975d76da45a928a40695cb590, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MonsterFSM
 --- !u!114 &3891553542054102046
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2254,6 +2267,7 @@ MonoBehaviour:
   OwnershipTransfer: 0
   observableSearch: 2
   ObservedComponents:
+  - {fileID: 8440178366544380995}
   - {fileID: 3891553542054102046}
   - {fileID: 1048597081549259782}
   - {fileID: 5695406926694286361}
