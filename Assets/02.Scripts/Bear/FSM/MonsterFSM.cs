@@ -10,6 +10,7 @@ public class MonsterFSM : MonoBehaviourPun, IPunObservable
     private Dictionary<MonsterState, IMonsterState> _states;    // 모든 상태
     private IMonsterState _currentState;                        // 현재 상태
     private int _targetActorNumber = -1;                        // 플레이어 번호
+    private bool _isStopped;
 
     public void Initialize(Dictionary<MonsterState, IMonsterState> states, MonsterState initialState)
     {
@@ -20,8 +21,16 @@ public class MonsterFSM : MonoBehaviourPun, IPunObservable
     private void Update()
     {
         if (!PhotonNetwork.IsMasterClient) return;
+        if (_isStopped) return;
 
         _currentState?.Tick();
+    }
+
+    public void Stop()
+    {
+        _isStopped = true;
+        _currentState?.Exit();
+        _currentState = null;
     }
 
     public void ChangeState(MonsterState newState)

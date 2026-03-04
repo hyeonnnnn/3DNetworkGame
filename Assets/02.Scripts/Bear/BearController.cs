@@ -1,12 +1,15 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using Photon.Pun;
+using Photon.Realtime;
+using ExitGames.Client.Photon;
 using System;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class BearController : MonoBehaviour, IPunObservable, IDamageable
+public class BearController : MonoBehaviour, IPunObservable, IDamageable, IOnEventCallback
 {
+    private const byte BearDamageEventCode = 1;
     public BearStat Stat;
     public PhotonView PhotonView;
 
@@ -34,6 +37,16 @@ public class BearController : MonoBehaviour, IPunObservable, IDamageable
         InitializeFSM();
     }
 
+    private void OnEnable()
+    {
+        PhotonNetwork.AddCallbackTarget(this);
+    }
+
+    private void OnDisable()
+    {
+        PhotonNetwork.RemoveCallbackTarget(this);
+    }
+
     private void InitializeFSM()
     {
         var states = new Dictionary<MonsterState, IMonsterState>
@@ -42,13 +55,11 @@ public class BearController : MonoBehaviour, IPunObservable, IDamageable
             { MonsterState.Chase, new ChaseState(_fsm, _agent, this, _animator) },
             { MonsterState.Attack, new AttackState(_fsm, _agent, this, _animator) },
             { MonsterState.Hit, new HitState(_fsm, _agent, _animator) },
-            { MonsterState.Dead, new DeadState(_fsm, _agent) }
         };
 
         _fsm.Initialize(states, MonsterState.Patrol);
     }
 
-    [PunRPC]
     public void TakeDamage(float damage, int attackerActorNumber)
     {
         if (IsDead) return;
@@ -65,9 +76,10 @@ public class BearController : MonoBehaviour, IPunObservable, IDamageable
     {
         IsDead = true;
 
-        _fsm.ChangeState(MonsterState.Dead);
+        _fsm.Stop();
+        _agent.isStopped = true;
+        _animator.SetTrigger(s_dieTrigger);
         OnBearDied?.Invoke(attackerActorNumber);
-        PhotonView.RPC(nameof(RPC_PlayDie), RpcTarget.All);
 
         if (PhotonNetwork.IsMasterClient)
         {
@@ -81,15 +93,35 @@ public class BearController : MonoBehaviour, IPunObservable, IDamageable
         PhotonNetwork.Destroy(gameObject);
     }
 
-    [PunRPC]
-    private void RPC_PlayDie()
-    {
-        _animator.SetTrigger(s_dieTrigger);
-    }
-
     public void TakeDamageRPC(float damage, int attackerActorNumber)
     {
-        PhotonView.RPC(nameof(TakeDamage), RpcTarget.All, damage, attackerActorNumber);
+        if (PhotonNetwork.IsMasterClient)
+        {
+            TakeDamage(damage, attackerActorNumber);
+        }
+        else
+        {
+            // MasterClient에게 데미지 요청
+            object[] content = { PhotonView.ViewID, damage, attackerActorNumber };
+            RaiseEventOptions options = new RaiseEventOptions { Receivers = ReceiverGroup.MasterClient };
+            PhotonNetwork.RaiseEvent(BearDamageEventCode, content, options, SendOptions.SendReliable);
+        }
+    }
+
+    public void OnEvent(EventData photonEvent)
+    {
+        if (photonEvent.Code != BearDamageEventCode) return;
+        if (!PhotonNetwork.IsMasterClient) return;
+
+        object[] data = (object[])photonEvent.CustomData;
+        int viewID = (int)data[0];
+        float damage = (float)data[1];
+        int attackerActorNumber = (int)data[2];
+
+        if (PhotonView.ViewID == viewID)
+        {
+            TakeDamage(damage, attackerActorNumber);
+        }
     }
 
     public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
@@ -115,6 +147,11 @@ public class BearController : MonoBehaviour, IPunObservable, IDamageable
             if (healthChanged)
             {
                 Stat.Health = (float)stream.ReceiveNext();
+
+                if (Stat.Health <= 0 && !IsDead)
+                {
+                    Die(-1);
+                }
             }
         }
     }

@@ -47,7 +47,7 @@ public class ChaseState : IMonsterState
 
         if (distance <= _bear.Stat.AttackRange)
         {
-            _fsm.ChangeState(MonsterState.Attack);
+            _fsm.ChangeState(MonsterState.Attack);  // 플레이어 공격
             return;
         }
 

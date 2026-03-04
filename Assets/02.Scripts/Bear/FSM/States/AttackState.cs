@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.AI;
 
 public class AttackState : IMonsterState
@@ -12,7 +12,7 @@ public class AttackState : IMonsterState
 
     private float _attackTimer;
 
-    private static readonly int s_attackTrigger = Animator.StringToHash("Attack");
+    private static readonly int s_attackTrigger = Animator.StringToHash("Attack1");
 
     public AttackState(MonsterFSM fsm, NavMeshAgent agent, BearController bear, Animator animator)
     {
@@ -29,6 +29,7 @@ public class AttackState : IMonsterState
 
         RotateTowardsTarget();
         _animator.SetTrigger(s_attackTrigger);
+        Attack();
     }
 
     public void Tick()
@@ -51,11 +52,22 @@ public class AttackState : IMonsterState
             {
                 _fsm.ChangeState(MonsterState.Chase);
             }
-            else
+            else // 공격
             {
                 _attackTimer = 0f;
                 _animator.SetTrigger(s_attackTrigger);
+                Attack();
             }
+        }
+    }
+
+    private void Attack()
+    {
+        if (_fsm.Target == null) return;
+
+        if (_fsm.Target.TryGetComponent<IDamageable>(out var damageable))
+        {
+            damageable.TakeDamageRPC(_bear.Stat.Damage, -1);
         }
     }
 
