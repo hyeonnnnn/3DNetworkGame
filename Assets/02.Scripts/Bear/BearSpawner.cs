@@ -37,6 +37,6 @@ public class BearSpawner : Spawner
     public override void Spawn()
     {
         Vector3 spawnPosition = GetRandomSpawnPoint();
-        PhotonNetwork.Instantiate(_prefabName, spawnPosition, Quaternion.identity);
+        SpawnPrefab(spawnPosition, Quaternion.identity);
     }
 }

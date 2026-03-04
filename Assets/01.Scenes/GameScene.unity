@@ -1139,7 +1139,8 @@ MonoBehaviour:
   - {fileID: 355482448}
   - {fileID: 908842383}
   _prefabName: Bear
-  _spawnInterval: 60
+  _root: {fileID: 111396940}
+  _spawnInterval: 30
 --- !u!4 &111396942
 Transform:
   m_ObjectHideFlags: 0
@@ -7351,6 +7352,7 @@ MonoBehaviour:
   - {fileID: 1384483848}
   - {fileID: 1445556769}
   _prefabName: Player
+  _root: {fileID: 863937649}
 --- !u!1001 &865917307
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -18708,6 +18710,7 @@ MonoBehaviour:
   - {fileID: 1490673221}
   - {fileID: 993195795}
   _prefabName: Coin
+  _root: {fileID: 1960677225}
   _spawnInterval: 5
   _spawnHeight: 10
   _coinsPerSpawn: 3
@@ -20858,71 +20861,6 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 5379434276070625919, guid: 5d8926d072c328b45a508beda8899a3c, type: 3}
   m_PrefabInstance: {fileID: 5717958332593487134}
   m_PrefabAsset: {fileID: 0}
---- !u!1001 &7739924548229026738
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 1096117795225664196, guid: eaff935cbf56dc0448331fa18cad6038, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 11.81229
-      objectReference: {fileID: 0}
-    - target: {fileID: 1096117795225664196, guid: eaff935cbf56dc0448331fa18cad6038, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0.2255664
-      objectReference: {fileID: 0}
-    - target: {fileID: 1096117795225664196, guid: eaff935cbf56dc0448331fa18cad6038, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -7.558579
-      objectReference: {fileID: 0}
-    - target: {fileID: 1096117795225664196, guid: eaff935cbf56dc0448331fa18cad6038, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: -0.20552275
-      objectReference: {fileID: 0}
-    - target: {fileID: 1096117795225664196, guid: eaff935cbf56dc0448331fa18cad6038, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1096117795225664196, guid: eaff935cbf56dc0448331fa18cad6038, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0.97865236
-      objectReference: {fileID: 0}
-    - target: {fileID: 1096117795225664196, guid: eaff935cbf56dc0448331fa18cad6038, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1096117795225664196, guid: eaff935cbf56dc0448331fa18cad6038, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1096117795225664196, guid: eaff935cbf56dc0448331fa18cad6038, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: -203.71999
-      objectReference: {fileID: 0}
-    - target: {fileID: 1096117795225664196, guid: eaff935cbf56dc0448331fa18cad6038, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4324508043282543519, guid: eaff935cbf56dc0448331fa18cad6038, type: 3}
-      propertyPath: sceneViewId
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 8338244958634632050, guid: eaff935cbf56dc0448331fa18cad6038, type: 3}
-      propertyPath: m_Name
-      value: Bear
-      objectReference: {fileID: 0}
-    - target: {fileID: 8338244958634632050, guid: eaff935cbf56dc0448331fa18cad6038, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: eaff935cbf56dc0448331fa18cad6038, type: 3}
 --- !u!1001 &8730119247996590798
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -21013,4 +20951,3 @@ SceneRoots:
   - {fileID: 1236959230}
   - {fileID: 1182248460}
   - {fileID: 105278484}
-  - {fileID: 7739924548229026738}
