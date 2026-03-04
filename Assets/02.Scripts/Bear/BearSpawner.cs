@@ -37,6 +37,6 @@ public class BearSpawner : Spawner
     public override void Spawn()
     {
         Vector3 spawnPosition = GetRandomSpawnPoint();
-        SpawnPrefab(spawnPosition, Quaternion.identity);
+        SpawnRoomObject(spawnPosition, Quaternion.identity);
     }
 }

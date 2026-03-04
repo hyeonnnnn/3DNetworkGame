@@ -20,6 +20,6 @@ public class PlayerSpawner : Spawner
     public override void Spawn()
     {
         Vector3 spawnPosition = GetRandomSpawnPoint();
-        SpawnPrefab(spawnPosition, Quaternion.identity);
+        SpawnObject(spawnPosition, Quaternion.identity);
     }
 }

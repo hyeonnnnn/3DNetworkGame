@@ -1,4 +1,5 @@
-﻿using Photon.Pun;
+﻿using System.Collections;
+using Photon.Pun;
 using System;
 using UnityEngine;
 
@@ -42,6 +43,17 @@ public class BearController : MonoBehaviour, IPunObservable, IDamageable
 
         OnBearDied?.Invoke(attackerActorNumber);
         PhotonView.RPC(nameof(RPC_PlayDie), RpcTarget.All);
+
+        if (PhotonNetwork.IsMasterClient)
+        {
+            StartCoroutine(DestroyAfterDelay(3.2f));
+        }
+    }
+
+    private IEnumerator DestroyAfterDelay(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        PhotonNetwork.Destroy(gameObject);
     }
 
     [PunRPC]
