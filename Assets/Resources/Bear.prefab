@@ -2228,11 +2228,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::BearController
   Stat:
     Damage: 10
-    MoveSpeed: 2
+    WalkSpeed: 2
+    RunSpeed: 4
     RotationSpeed: 100
     AttackCoolTime: 5
     MaxHealth: 50
     Health: 50
+    AttackRange: 2
+    DetectionRange: 10
+    PatrolRadius: 8
   PhotonView: {fileID: 4324508043282543519}
 --- !u!114 &8071282424469974606
 MonoBehaviour:

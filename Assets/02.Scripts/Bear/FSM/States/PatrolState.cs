@@ -5,12 +5,10 @@ public class PatrolState : IMonsterState
 {
     public MonsterState Type => MonsterState.Patrol;
 
-    private readonly MonsterFSM _fsm;       // 상태를 바꿀 때 사용
+    private readonly MonsterFSM _fsm;
     private readonly NavMeshAgent _agent;
-    private readonly BearController _bear;  // 곰의 스탯
+    private readonly BearController _bear;
     private readonly Animator _animator;
-    private readonly float _detectionRange; // 플레이어를 발견하는 범위
-    private readonly float _patrolRadius;   // 순찰 범위
 
     private Vector3 _patrolTarget;
     private float _waitTimer;
@@ -21,19 +19,17 @@ public class PatrolState : IMonsterState
 
     private bool _isWaiting;
 
-    public PatrolState(MonsterFSM fsm, NavMeshAgent agent, BearController bear, Animator animator, float detectionRange = 10f, float patrolRadius = 8f)
+    public PatrolState(MonsterFSM fsm, NavMeshAgent agent, BearController bear, Animator animator)
     {
         _fsm = fsm;
         _agent = agent;
         _bear = bear;
         _animator = animator;
-        _detectionRange = detectionRange;
-        _patrolRadius = patrolRadius;
     }
 
     public void Enter()
     {
-        _agent.speed = _bear.Stat.MoveSpeed * 0.5f;
+        _agent.speed = _bear.Stat.WalkSpeed * 0.5f;
         _animator.SetBool(s_walkForward, true);
         SetRandomPatrolTarget();
     }
@@ -85,10 +81,11 @@ public class PatrolState : IMonsterState
 
     private void SetRandomPatrolTarget()
     {
-        Vector3 randomDirection = Random.insideUnitSphere * _patrolRadius;
+        float patrolRadius = _bear.Stat.PatrolRadius;
+        Vector3 randomDirection = Random.insideUnitSphere * patrolRadius;
         randomDirection += _fsm.transform.position;
 
-        if (NavMesh.SamplePosition(randomDirection, out NavMeshHit hit, _patrolRadius, NavMesh.AllAreas))
+        if (NavMesh.SamplePosition(randomDirection, out NavMeshHit hit, patrolRadius, NavMesh.AllAreas))
         {
             _patrolTarget = hit.position;
             _agent.SetDestination(_patrolTarget);
@@ -100,7 +97,7 @@ public class PatrolState : IMonsterState
         target = null;
         actorNumber = -1;
 
-        Collider[] colliders = Physics.OverlapSphere(_fsm.transform.position, _detectionRange);
+        Collider[] colliders = Physics.OverlapSphere(_fsm.transform.position, _bear.Stat.DetectionRange);
         float closestDistance = float.MaxValue;
 
         foreach (var col in colliders)

@@ -1140,7 +1140,7 @@ MonoBehaviour:
   - {fileID: 908842383}
   _prefabName: Bear
   _root: {fileID: 111396940}
-  _spawnInterval: 15
+  _spawnInterval: 8
 --- !u!4 &111396942
 Transform:
   m_ObjectHideFlags: 0

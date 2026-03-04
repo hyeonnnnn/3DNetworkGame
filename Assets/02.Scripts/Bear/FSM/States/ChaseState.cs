@@ -9,25 +9,21 @@ public class ChaseState : IMonsterState
     private readonly NavMeshAgent _agent;
     private readonly BearController _bear;
     private readonly Animator _animator;
-    private readonly float _attackRange;
-    private readonly float _loseTargetRange;
 
-    private static readonly int s_walkForward = Animator.StringToHash("RunForward");
+    private static readonly int s_runForward = Animator.StringToHash("Run Forward");
 
-    public ChaseState(MonsterFSM fsm, NavMeshAgent agent, BearController bear, Animator animator, float attackRange = 2f, float loseTargetRange = 15f)
+    public ChaseState(MonsterFSM fsm, NavMeshAgent agent, BearController bear, Animator animator)
     {
         _fsm = fsm;
         _agent = agent;
         _bear = bear;
         _animator = animator;
-        _attackRange = attackRange;
-        _loseTargetRange = loseTargetRange;
     }
 
     public void Enter()
     {
-        _agent.speed = _bear.Stat.MoveSpeed;
-        _animator.SetBool(s_walkForward, true);
+        _agent.speed = _bear.Stat.RunSpeed;
+        _animator.SetBool(s_runForward, true);
         _agent.isStopped = false;
     }
 
@@ -42,14 +38,14 @@ public class ChaseState : IMonsterState
 
         float distance = Vector3.Distance(_fsm.transform.position, _fsm.Target.position);
 
-        if (distance > _loseTargetRange)
+        if (distance > _bear.Stat.DetectionRange)
         {
             _fsm.ClearTarget();
             _fsm.ChangeState(MonsterState.Patrol);
             return;
         }
 
-        if (distance <= _attackRange)
+        if (distance <= _bear.Stat.AttackRange)
         {
             _fsm.ChangeState(MonsterState.Attack);
             return;
@@ -61,7 +57,7 @@ public class ChaseState : IMonsterState
 
     public void Exit()
     {
-        _animator.SetBool(s_walkForward, false);
+        _animator.SetBool(s_runForward, false);
     }
 
     private void RotateTowardsTarget()
