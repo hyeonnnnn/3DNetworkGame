@@ -101,13 +101,6 @@ public class MonsterFSM : MonoBehaviourPun, IPunObservable
 
     private GameObject FindPlayerByActorNumber(int actorNumber)
     {
-        foreach (var pv in FindObjectsByType<PhotonView>(FindObjectsSortMode.None))
-        {
-            if (pv.Owner != null && pv.Owner.ActorNumber == actorNumber && pv.CompareTag("Player"))
-            {
-                return pv.gameObject;
-            }
-        }
-        return null;
+        return PlayerRegistry.Find(actorNumber);
     }
 }

@@ -12,5 +12,8 @@ public abstract class BearAbility : MonoBehaviour
     private void Update()
     {
         if (_owner.IsDead) return;
+        OnUpdate();
     }
+
+    protected virtual void OnUpdate() { }
 }

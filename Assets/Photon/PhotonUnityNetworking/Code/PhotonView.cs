@@ -1,4 +1,4 @@
-// ----------------------------------------------------------------------------
+﻿// ----------------------------------------------------------------------------
 // <copyright file="PhotonView.cs" company="Exit Games GmbH">
 //   PhotonNetwork Framework for Unity - Copyright (C) 2018 Exit Games GmbH
 // </copyright>
@@ -207,7 +207,7 @@ namespace Photon.Pun
         [NonSerialized]
         private int ownerActorNr;
 
-        public int OwnerActorNr
+        public int OwnerActorNumber
         {
             get { return this.ownerActorNr; }
             set
@@ -308,7 +308,7 @@ namespace Photon.Pun
 
                 this.viewIdField = value;
                 this.CreatorActorNr = value / PhotonNetwork.MAX_VIEW_IDS;   // the creator can be derived from the viewId. this is also the initial owner and creator.
-                this.OwnerActorNr = this.CreatorActorNr;
+                this.OwnerActorNumber = this.CreatorActorNr;
                 this.ControllerActorNr = this.CreatorActorNr;
                 this.RebuildControllerCache();
 
@@ -372,14 +372,14 @@ namespace Photon.Pun
             //var prevController = this.controller;
 
             // objects without controller and room objects (ownerId 0) check if controller update is needed
-            if (this.controllerActorNr == 0 || this.OwnerActorNr == 0 || this.Owner == null || this.Owner.IsInactive)
+            if (this.controllerActorNr == 0 || this.OwnerActorNumber == 0 || this.Owner == null || this.Owner.IsInactive)
             {
                 var masterclient = PhotonNetwork.MasterClient;
                 this.ControllerActorNr = masterclient == null ? -1 : masterclient.ActorNumber;
             }
             else
             {
-                this.ControllerActorNr = this.OwnerActorNr;
+                this.ControllerActorNr = this.OwnerActorNumber;
             }
         }
 

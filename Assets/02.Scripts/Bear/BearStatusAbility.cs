@@ -14,7 +14,7 @@ public class BearStatusAbility : BearAbility
         _cameraTransform = Camera.main.transform;
     }
 
-    private void Update()
+    protected override void OnUpdate()
     {
         UpdateHealthUI();
 

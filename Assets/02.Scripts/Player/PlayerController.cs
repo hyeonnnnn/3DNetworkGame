@@ -35,6 +35,8 @@ public class PlayerController : MonoBehaviour, IPunObservable, IDamageable
 
     private void Start()
     {
+        PlayerRegistry.Register(PhotonView.OwnerActorNumber, gameObject);
+
         if (PhotonView.IsMine)
         {
             RegisterToMinimapCamera();
@@ -45,13 +47,14 @@ public class PlayerController : MonoBehaviour, IPunObservable, IDamageable
 
     private void OnDestroy()
     {
+        PlayerRegistry.Unregister(PhotonView.OwnerActorNumber);
         ScoreManager.OnDataChanged -= HandleScoreDataChanged;
     }
 
     private void HandleScoreDataChanged()
     {
         var scores = ScoreManager.Instance.Scores;
-        if (!scores.TryGetValue(PhotonView.OwnerActorNr, out ScoreData data)) return;
+        if (!scores.TryGetValue(PhotonView.OwnerActorNumber, out ScoreData data)) return;
 
         Score = data.Score;
         OnScoreChanged?.Invoke(Score);
