@@ -1,11 +1,28 @@
 ﻿using Photon.Pun;
 using UnityEngine;
 
-public class GameScene : MonoBehaviour
+public class GameScene : MonoBehaviourPunCallbacks
 {
+    private bool _isSpawned = false;
+
     private void Start()
     {
-        // 리소스 폴더 말고 다른 방법 찾아보기
+        if (PhotonNetwork.InRoom)
+        {
+            SpawnPlayer();
+        }
+    }
+
+    public override void OnJoinedRoom()
+    {
+        SpawnPlayer();
+    }
+
+    private void SpawnPlayer()
+    {
+        if (_isSpawned) return;
+
         PhotonNetwork.Instantiate("Player", Vector3.zero, Quaternion.identity);
+        _isSpawned = true;
     }
 }

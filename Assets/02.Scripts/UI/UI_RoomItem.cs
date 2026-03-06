@@ -1,4 +1,5 @@
-﻿using Photon.Realtime;
+﻿using Photon.Pun;
+using Photon.Realtime;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -32,5 +33,7 @@ public class UI_RoomItem : MonoBehaviour
     private void EnterRoom()
     {
         if (_roomInfo == null) return;
+
+        PhotonNetwork.JoinRoom(_roomInfo.Name);
     }
 }

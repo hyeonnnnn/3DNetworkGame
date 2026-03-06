@@ -73,9 +73,6 @@ public class PhotonServerManager : MonoBehaviourPunCallbacks
     {
         Debug.Log("로비 접속 완료!");
         Debug.Log(PhotonNetwork.InLobby);
-
-        // 랜덤 방 입장 시도
-        PhotonNetwork.JoinRandomRoom();
     }
 
     // 랜덤방 입장에 실패하면 자동으로 호출되는 콜백 함수

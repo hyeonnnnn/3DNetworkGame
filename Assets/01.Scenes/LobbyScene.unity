@@ -7828,7 +7828,7 @@ GameObject:
   m_IsActive: 1
 --- !u!114 &1119575401
 MonoBehaviour:
-  m_ObjectHideFlags: 19
+  m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
@@ -9931,10 +9931,6 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1120625912164440754, guid: d21be120ba33d5a409ac0df255bbcdad, type: 3}
-      propertyPath: m_text
-      value: Create
-      objectReference: {fileID: 0}
     - target: {fileID: 1341442501203910093, guid: d21be120ba33d5a409ac0df255bbcdad, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -10155,14 +10151,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Canvas
       objectReference: {fileID: 0}
-    - target: {fileID: 3321253014759793451, guid: d21be120ba33d5a409ac0df255bbcdad, type: 3}
-      propertyPath: m_VerticalScrollbar
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 3321253014759793451, guid: d21be120ba33d5a409ac0df255bbcdad, type: 3}
-      propertyPath: m_HorizontalScrollbar
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: 3324160420209109929, guid: d21be120ba33d5a409ac0df255bbcdad, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -10182,10 +10170,6 @@ PrefabInstance:
     - target: {fileID: 3324160420209109929, guid: d21be120ba33d5a409ac0df255bbcdad, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3359175882486523706, guid: d21be120ba33d5a409ac0df255bbcdad, type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3511148277165392097, guid: d21be120ba33d5a409ac0df255bbcdad, type: 3}
       propertyPath: m_AnchorMax.y
@@ -10408,10 +10392,6 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2143787214}
     - target: {fileID: 5996670436607260284, guid: d21be120ba33d5a409ac0df255bbcdad, type: 3}
-      propertyPath: CreateRoomButton
-      value: 
-      objectReference: {fileID: 1430403129}
-    - target: {fileID: 5996670436607260284, guid: d21be120ba33d5a409ac0df255bbcdad, type: 3}
       propertyPath: _femaleCharacter
       value: 
       objectReference: {fileID: 831719147}
@@ -10514,10 +10494,6 @@ PrefabInstance:
     - target: {fileID: 6925777712077952694, guid: d21be120ba33d5a409ac0df255bbcdad, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7191138353675842109, guid: d21be120ba33d5a409ac0df255bbcdad, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: OnClickFemale
       objectReference: {fileID: 0}
     - target: {fileID: 7248469067351587158, guid: d21be120ba33d5a409ac0df255bbcdad, type: 3}
       propertyPath: m_AnchorMax.y
@@ -11366,17 +11342,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5023827496289240853, guid: a79279818571b6848a9ccb8dcb36dd2c, type: 3}
   m_PrefabInstance: {fileID: 1421829488}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1430403129 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7798167148140570235, guid: d21be120ba33d5a409ac0df255bbcdad, type: 3}
-  m_PrefabInstance: {fileID: 1313877397}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Button
 --- !u!1001 &1431058652
 PrefabInstance:
   m_ObjectHideFlags: 0

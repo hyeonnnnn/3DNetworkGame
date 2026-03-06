@@ -11,7 +11,7 @@ public class UI_Room : MonoBehaviourPunCallbacks
 
     private void Awake()
     {
-        _roomItems = GetComponentsInChildren<UI_RoomItem>().ToList();
+        _roomItems = GetComponentsInChildren<UI_RoomItem>(true).ToList();
         HideAllRoomUI();
     }
 
