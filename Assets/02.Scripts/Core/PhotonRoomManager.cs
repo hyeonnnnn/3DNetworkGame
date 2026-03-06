@@ -46,7 +46,7 @@ public class PhotonRoomManager : MonoBehaviourPunCallbacks
 
         if (PhotonNetwork.IsMasterClient)
         {
-            PhotonNetwork.LoadLevel("GameScene");
+            PhotonNetwork.LoadLevel(Constants.Scene.Game);
         }
         else
         {

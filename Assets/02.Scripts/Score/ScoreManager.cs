@@ -1,4 +1,4 @@
-﻿using Photon.Pun;
+using Photon.Pun;
 using Photon.Realtime;
 using System;
 using System.Collections.Generic;
@@ -44,7 +44,7 @@ public class ScoreManager : MonoBehaviourPunCallbacks
         foreach (var player in PhotonNetwork.PlayerList)
         {
             int score = 0;
-            if (player.CustomProperties.TryGetValue("score", out object scoreObj))
+            if (player.CustomProperties.TryGetValue(Constants.PlayerProperty.Score, out object scoreObj))
             {
                 score = (int)scoreObj;
             }
@@ -66,7 +66,7 @@ public class ScoreManager : MonoBehaviourPunCallbacks
         // 해시테이블은 딕셔너리와 같은 키-값 형태로 저장하는데
         // 키-값에 있어서 자료형이 object다.
         Hashtable hashtable = new Hashtable();
-        hashtable.Add("score", _score);
+        hashtable.Add(Constants.PlayerProperty.Score, _score);
 
         // 프로퍼티 등록
         PhotonNetwork.LocalPlayer.SetCustomProperties(hashtable);
@@ -87,12 +87,12 @@ public class ScoreManager : MonoBehaviourPunCallbacks
     // 플레이어의 커스텀 프로퍼티가 변경되면 자동으로 호출되는 함수
     public override void OnPlayerPropertiesUpdate(Player targetPlayer, ExitGames.Client.Photon.Hashtable changedProps)
     {
-        if (!changedProps.ContainsKey("score")) return;
+        if (!changedProps.ContainsKey(Constants.PlayerProperty.Score)) return;
 
         ScoreData scoreData = new ScoreData()
         {
             Nickname = targetPlayer.NickName,
-            Score = (int)changedProps["score"]
+            Score = (int)changedProps[Constants.PlayerProperty.Score]
         };
 
         _scores[targetPlayer.ActorNumber] = scoreData;

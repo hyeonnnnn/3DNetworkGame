@@ -24,7 +24,7 @@ public class UI_RoomItem : MonoBehaviour
         _roomNameTextUI.text = roomInfo.Name;
         _playerCountTextUI.text = $"{roomInfo.PlayerCount}/{roomInfo.MaxPlayers}";
 
-        if (roomInfo.CustomProperties.TryGetValue("MasterName", out object masterName))
+        if (roomInfo.CustomProperties.TryGetValue(Constants.RoomProperty.MasterName, out object masterName))
         {
             _masterNicknameTextUI.text = masterName.ToString();
         }

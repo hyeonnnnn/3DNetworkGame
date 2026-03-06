@@ -37,7 +37,7 @@ public class UI_RoomInfo : MonoBehaviourPunCallbacks
 
     public override void OnLeftRoom()
     {
-        UnityEngine.SceneManagement.SceneManager.LoadScene("LobbyScene");
+        UnityEngine.SceneManagement.SceneManager.LoadScene(Constants.Scene.Lobby);
     }
 
     private void Refresh()
