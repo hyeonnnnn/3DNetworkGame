@@ -35,8 +35,6 @@ public class ItemObjectFactory : MonoBehaviour
     [PunRPC]
     private void MakeScoreItems(Vector3 makePosition)
     {
-        Debug.Log("MakeScoreItems");
-
         int count = Random.Range(_minDropCount, _maxDropCount + 1);
 
         for (int i = 0; i < count; i++)

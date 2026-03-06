@@ -5,6 +5,8 @@ using Photon.Realtime;
 
 public class PhotonServerManager : MonoBehaviourPunCallbacks
 {
+    public static PhotonServerManager Instance { get; private set; }
+
     // MonoBehaviour             : Unity의 다양항 '이벤트' 콜백 함수를 오버라이드할 수 있다.(Awake, Start, Update ..)
     // MonoBehaviourPunCallbacks : PUN의 다양한 '서버 이벤트' 콜백 함수를 오버라이드할 수 있다.
     // - 서버 접속에 성공/실패했다.
@@ -13,6 +15,19 @@ public class PhotonServerManager : MonoBehaviourPunCallbacks
 
     private string _version = "0.0.1";
     private string _nickname = "HY";
+
+    private void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
 
     private void Start()
     {
@@ -40,7 +55,7 @@ public class PhotonServerManager : MonoBehaviourPunCallbacks
         Debug.Log("네임서버 접속 완료!");
         // 네임 서버(AppId, GameVersion 등으로 구분되는 서버)
 
-        Debug.Log(PhotonNetwork.CloudRegion);
+        // Debug.Log(PhotonNetwork.CloudRegion);
         // 현재 어느 지역의 서버에 연결됐나?
         // ping 테스트를 통해서 가장 빠른 리전으로 자동 연결된다. (kr: korea)
     }
@@ -58,26 +73,12 @@ public class PhotonServerManager : MonoBehaviourPunCallbacks
     {
         Debug.Log("로비 접속 완료!");
         Debug.Log(PhotonNetwork.InLobby);
-
-        // 랜덤 방 입장 시도
-        PhotonNetwork.JoinRandomRoom();
     }
 
     // 랜덤방 입장에 실패하면 자동으로 호출되는 콜백 함수
     public override void OnJoinRandomFailed(short returnCode, string message)
     {
         Debug.Log($"랜덤 방 입장에 실패했습니다: {returnCode} - {message}");
-
-        // 랜덤 룸 입장에 실패하면.. 룸이 하나도 없는 것이니... 룸을 만들자!
-
-        // 룸 옵션 정의
-        RoomOptions roomOptions = new RoomOptions();
-        roomOptions.MaxPlayers = 20;  // 룸 최대 접속자 수
-        roomOptions.IsVisible = true; // 로비에서 룸을 보여줄 것인지
-        roomOptions.IsOpen = true;    // 룸의 오픈 여부
-
-        // 룸 만들기 
-        PhotonNetwork.CreateRoom("test", roomOptions);
     }
 
     // 방 입장에 실패하면 자동으로 호출되는 콜백 함수

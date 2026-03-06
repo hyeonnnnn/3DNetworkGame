@@ -1,4 +1,4 @@
-using Photon.Pun;
+﻿using Photon.Pun;
 using UnityEngine;
 
 public class CoinSpawner : Spawner
@@ -46,7 +46,7 @@ public class CoinSpawner : Spawner
         {
             Vector2 randomOffset = Random.insideUnitCircle * _spreadRadius;
             Vector3 spawnPosition = basePosition + new Vector3(randomOffset.x, 0f, randomOffset.y);
-            PhotonNetwork.InstantiateRoomObject(_prefabName, spawnPosition, Quaternion.identity);
+            SpawnRoomObject(spawnPosition, Quaternion.identity);
         }
     }
 
@@ -54,6 +54,6 @@ public class CoinSpawner : Spawner
     {
         Vector3 spawnPosition = GetRandomSpawnPoint();
         spawnPosition.y += _spawnHeight;
-        PhotonNetwork.InstantiateRoomObject(_prefabName, spawnPosition, Quaternion.identity);
+        SpawnRoomObject(spawnPosition, Quaternion.identity);
     }
 }

@@ -1,4 +1,4 @@
-using Photon.Pun;
+﻿using Photon.Pun;
 using UnityEngine;
 
 public class PlayerSpawner : Spawner
@@ -20,6 +20,6 @@ public class PlayerSpawner : Spawner
     public override void Spawn()
     {
         Vector3 spawnPosition = GetRandomSpawnPoint();
-        PhotonNetwork.Instantiate(_prefabName, spawnPosition, Quaternion.identity);
+        SpawnObject(spawnPosition, Quaternion.identity);
     }
 }

@@ -274,7 +274,7 @@ namespace Photon.Pun
             {
                 if (view.IsRoomView)
                 {
-                    view.OwnerActorNr= newMasterClient.ActorNumber;
+                    view.OwnerActorNumber= newMasterClient.ActorNumber;
                     view.ControllerActorNr = newMasterClient.ActorNumber;
                 }
             }
@@ -307,7 +307,7 @@ namespace Photon.Pun
             // If this is the master rejoining, reassert ownership of non-creator owners
             foreach (var view in views)
             {
-                int viewOwnerId = view.OwnerActorNr;
+                int viewOwnerId = view.OwnerActorNumber;
                 int viewCreatorId = view.CreatorActorNr;
 
                 // on join / rejoin, assign control to either the Master Client (for room objects) or the owner (for anything else)
@@ -356,7 +356,7 @@ namespace Photon.Pun
                 // the master client notifies joining players of any non-creator ownership
                 if (amMasterClient)
                 {
-                    int viewOwnerId = view.OwnerActorNr;
+                    int viewOwnerId = view.OwnerActorNumber;
                     if (viewOwnerId != view.CreatorActorNr)
                     {
                         reusableIntList.Add(view.ViewID);
@@ -404,9 +404,9 @@ namespace Photon.Pun
                         continue;
 
                     // Any views owned by the leaving player, default to null owner (which will become master controlled).
-                    if (view.OwnerActorNr == leavingPlayerId || view.ControllerActorNr == leavingPlayerId)
+                    if (view.OwnerActorNumber == leavingPlayerId || view.ControllerActorNr == leavingPlayerId)
                     {
-                        view.OwnerActorNr = 0;
+                        view.OwnerActorNumber = 0;
                         view.ControllerActorNr = PhotonNetwork.MasterClient.ActorNumber;
                     }
                 }

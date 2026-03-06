@@ -20,6 +20,7 @@ public class PhotonRoomManager : MonoBehaviourPunCallbacks
         if (Instance == null)
         {
             Instance = this;
+            DontDestroyOnLoad(gameObject);
         }
         else
         {
@@ -42,9 +43,18 @@ public class PhotonRoomManager : MonoBehaviourPunCallbacks
     public override void OnJoinedRoom()
     {
         _room = PhotonNetwork.CurrentRoom;
+
+        if (PhotonNetwork.IsMasterClient)
+        {
+            PhotonNetwork.LoadLevel(Constants.Scene.Game);
+        }
+        else
+        {
+            // 아무것도 하지 않아고 자동으로 방장이 있는 씬으로 옮겨진다.
+        }
         OnDataChanged?.Invoke();
 
-        PlayerSpawner.Instance.Spawn();
+        // PlayerSpawner.Instance.Spawn();
     }
 
     // 새로운 플레이어가 방에 들어오면 호출되는 함수

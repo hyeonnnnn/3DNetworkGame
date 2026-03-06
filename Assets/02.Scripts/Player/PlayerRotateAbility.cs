@@ -20,7 +20,7 @@ public class PlayerRotateAbility : PlayerAbility
     {
         if (!_owner.PhotonView.IsMine) return;
 
-        Cursor.lockState = CursorLockMode.Locked;
+        // Cursor.lockState = CursorLockMode.Locked;
 
         var vcam = Object.FindAnyObjectByType<CinemachineCamera>();
         if (vcam != null) vcam.Follow = CameraRoot.transform;

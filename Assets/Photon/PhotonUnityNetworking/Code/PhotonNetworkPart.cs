@@ -1,4 +1,4 @@
-// ----------------------------------------------------------------------------
+﻿// ----------------------------------------------------------------------------
 // <copyright file="PhotonNetworkPart.cs" company="Exit Games GmbH">
 //   PhotonNetwork Framework for Unity - Copyright (C) 2018 Exit Games GmbH
 // </copyright>
@@ -734,10 +734,10 @@ namespace Photon.Pun
                     continue;
                 }
 
-                if (view.OwnerActorNr == playerId)
+                if (view.OwnerActorNumber == playerId)
                 {
                     var previousOwner = view.Owner;
-                    view.OwnerActorNr = view.CreatorActorNr;
+                    view.OwnerActorNumber = view.CreatorActorNr;
                     view.ControllerActorNr = view.CreatorActorNr;
 
                     // This callback was not originally here. Added with the IsMine caching changes.
@@ -1070,7 +1070,7 @@ namespace Photon.Pun
         // Remove RPCs of view (if they are local player's RPCs)
         public static void CleanRpcBufferIfMine(PhotonView view)
         {
-            if (view.OwnerActorNr != NetworkingClient.LocalPlayer.ActorNumber && !NetworkingClient.LocalPlayer.IsMasterClient)
+            if (view.OwnerActorNumber != NetworkingClient.LocalPlayer.ActorNumber && !NetworkingClient.LocalPlayer.IsMasterClient)
             {
                 Debug.LogError("Cannot remove cached RPCs on a PhotonView thats not ours! " + view.Owner + " scene: " + view.IsRoomView);
                 return;
@@ -2320,19 +2320,19 @@ namespace Photon.Pun
 
                         if (PhotonNetwork.LogLevel == PunLogLevel.Informational)
                         {
-                            Debug.Log(string.Format("OwnershipRequest. actorNr {0} requests view {1} from {2}. current pv owner: {3} is {4}. isMine: {6} master client: {5}", actorNr, requestedViewId, requestedFromOwnerId, requestedView.OwnerActorNr, requestedView.IsOwnerActive ? "active" : "inactive", MasterClient.ActorNumber, requestedView.IsMine));
+                            Debug.Log(string.Format("OwnershipRequest. actorNr {0} requests view {1} from {2}. current pv owner: {3} is {4}. isMine: {6} master client: {5}", actorNr, requestedViewId, requestedFromOwnerId, requestedView.OwnerActorNumber, requestedView.IsOwnerActive ? "active" : "inactive", MasterClient.ActorNumber, requestedView.IsMine));
                         }
 
                         switch (requestedView.OwnershipTransfer)
                         {
                             case OwnershipOption.Takeover:
-                                int currentPvOwnerId = requestedView.OwnerActorNr;
+                                int currentPvOwnerId = requestedView.OwnerActorNumber;
                                 if (requestedFromOwnerId == currentPvOwnerId || (requestedFromOwnerId == 0 && currentPvOwnerId == MasterClient.ActorNumber) || currentPvOwnerId == 0)
                                 {
                                     // a takeover is successful automatically, if taken from current owner
                                     Player prevOwner = requestedView.Owner;
 
-                                    requestedView.OwnerActorNr = actorNr;
+                                    requestedView.OwnerActorNumber = actorNr;
                                     requestedView.ControllerActorNr = actorNr;
 
                                     if (PhotonNetwork.OnOwnershipTransferedEv != null)
@@ -2385,7 +2385,7 @@ namespace Photon.Pun
                             {
                                 Player prevOwner = requestedView.Owner;
 
-                                requestedView.OwnerActorNr= newOwnerId;
+                                requestedView.OwnerActorNumber= newOwnerId;
                                 requestedView.ControllerActorNr = newOwnerId;
 
                                 if (PhotonNetwork.OnOwnershipTransferedEv != null)
@@ -2439,7 +2439,7 @@ namespace Photon.Pun
                             Player prevOwner = view.Owner;
                             Player newOwner = CurrentRoom.GetPlayer(newOwnerId, true);
 
-                            view.OwnerActorNr= newOwnerId;
+                            view.OwnerActorNumber= newOwnerId;
                             view.ControllerActorNr = newOwnerId;
 
                             reusablePVHashset.Add(view);
