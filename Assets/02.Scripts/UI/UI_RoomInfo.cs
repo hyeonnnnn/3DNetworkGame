@@ -23,7 +23,7 @@ public class UI_RoomInfo : MonoBehaviour
 
     private void ExitRoom()
     {
-
+        SceneManager.Instance.LoadScene("LobbyScene");
     }
 
     private void Refresh()
