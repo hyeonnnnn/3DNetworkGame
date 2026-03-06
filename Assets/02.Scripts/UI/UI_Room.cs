@@ -23,6 +23,12 @@ public class UI_Room : MonoBehaviourPunCallbacks
         }
     }
 
+    public override void OnJoinedLobby()
+    {
+        _rooms.Clear();
+        HideAllRoomUI();
+    }
+
     public override void OnRoomListUpdate(List<RoomInfo> roomList)
     {
         HideAllRoomUI();

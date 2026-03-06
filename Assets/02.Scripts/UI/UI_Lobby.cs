@@ -41,8 +41,22 @@ public class UI_Lobby : MonoBehaviour
         // 명세로 만들어서 빼기
         string nickname = _nicknameInputField.text;
         string roomName = _roomNameInputField.text;
-    
+
         if (string.IsNullOrEmpty(nickname) || string.IsNullOrEmpty(roomName))  return;
+
+        // GameServer에 있으면 Master Server로 돌아가기
+        if (PhotonNetwork.InRoom)
+        {
+            PhotonNetwork.LeaveRoom();
+            return;
+        }
+
+        // Master Server에 연결되어 있지 않으면 재연결
+        if (!PhotonNetwork.IsConnectedAndReady || !PhotonNetwork.InLobby)
+        {
+            PhotonNetwork.ConnectUsingSettings();
+            return;
+        }
 
         PhotonNetwork.NickName = nickname;
 
@@ -57,7 +71,7 @@ public class UI_Lobby : MonoBehaviour
         };
         roomOptions.CustomRoomPropertiesForLobby = new string[] { "MasterName" };
 
-        // 룸 만들기 
+        // 룸 만들기
         PhotonNetwork.CreateRoom(roomName, roomOptions);
     }
 }

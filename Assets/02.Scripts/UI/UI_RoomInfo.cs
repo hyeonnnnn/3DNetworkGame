@@ -1,9 +1,10 @@
-﻿using Photon.Realtime;
+﻿using Photon.Pun;
+using Photon.Realtime;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class UI_RoomInfo : MonoBehaviour
+public class UI_RoomInfo : MonoBehaviourPunCallbacks
 {
     [SerializeField] private TextMeshProUGUI _roomNameText;
     [SerializeField] private TextMeshProUGUI _playerCountText;
@@ -21,9 +22,22 @@ public class UI_RoomInfo : MonoBehaviour
         Refresh();
     }
 
+    private void OnDestroy()
+    {
+        if (PhotonRoomManager.Instance != null)
+        {
+            PhotonRoomManager.Instance.OnDataChanged -= Refresh;
+        }
+    }
+
     private void ExitRoom()
     {
-        SceneManager.Instance.LoadScene("LobbyScene");
+        PhotonNetwork.LeaveRoom();
+    }
+
+    public override void OnLeftRoom()
+    {
+        UnityEngine.SceneManagement.SceneManager.LoadScene("LobbyScene");
     }
 
     private void Refresh()

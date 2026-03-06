@@ -20,6 +20,11 @@ public class UI_Score : MonoBehaviour
         Refresh();
     }
 
+    private void OnDestroy()
+    {
+        ScoreManager.OnDataChanged -= Refresh;
+    }
+
     private void Refresh()
     {
         // 리드온리가 아니면 원본을 수정할 수 있으므로 무결성 문제가 생긴다.
