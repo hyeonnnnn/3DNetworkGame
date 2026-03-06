@@ -24,25 +24,41 @@ public class ScoreManager : MonoBehaviourPunCallbacks
         Instance = this;
     }
 
+    private void Start()
+    {
+        // 씬 로드 후 이미 방에 있으면 초기화
+        if (PhotonNetwork.InRoom)
+        {
+            InitializeScores();
+        }
+    }
+
     public override void OnJoinedRoom()
     {
-        // 기존 플레이어들의 점수 정보 가져오기
+        InitializeScores();
+    }
+
+    private void InitializeScores()
+    {
+        // 기존 플레이어들의 점수 정보 가져오기 (없으면 0으로 초기화)
         foreach (var player in PhotonNetwork.PlayerList)
         {
+            int score = 0;
             if (player.CustomProperties.TryGetValue("score", out object scoreObj))
             {
-                ScoreData scoreData = new ScoreData()
-                {
-                    Nickname = player.NickName,
-                    Score = (int)scoreObj
-                };
-                _scores[player.ActorNumber] = scoreData;
+                score = (int)scoreObj;
             }
+            ScoreData scoreData = new ScoreData()
+            {
+                Nickname = player.NickName,
+                Score = score
+            };
+            _scores[player.ActorNumber] = scoreData;
         }
-        OnDataChanged?.Invoke();
 
-        // 자신의 점수 초기화
+        // 자신의 점수 초기화 후 이벤트 호출
         Refresh();
+        OnDataChanged?.Invoke();
     }
 
     private void Refresh()

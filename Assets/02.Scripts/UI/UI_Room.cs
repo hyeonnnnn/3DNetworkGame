@@ -41,7 +41,6 @@ public class UI_Room : MonoBehaviourPunCallbacks
 
         int roomCount = _rooms.Count;
         List<RoomInfo> rooms = _rooms.Values.ToList();
-        // LINQ로 정렬
         for (int i = 0; i < roomCount; i++)
         {
             _roomItems[i].Init(rooms[i]);
