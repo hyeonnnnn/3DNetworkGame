@@ -51,6 +51,11 @@ public class UI_Lobby : MonoBehaviour
         roomOptions.MaxPlayers = 20;  // 룸 최대 접속자 수
         roomOptions.IsVisible = true; // 로비에서 룸을 보여줄 것인지
         roomOptions.IsOpen = true;    // 룸의 오픈 여부
+        roomOptions.CustomRoomProperties = new ExitGames.Client.Photon.Hashtable
+        {
+            { "MasterName", nickname }
+        };
+        roomOptions.CustomRoomPropertiesForLobby = new string[] { "MasterName" };
 
         // 룸 만들기 
         PhotonNetwork.CreateRoom(roomName, roomOptions);

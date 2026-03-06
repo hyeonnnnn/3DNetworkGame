@@ -21,8 +21,12 @@ public class UI_RoomItem : MonoBehaviour
     {
         _roomInfo = roomInfo;
         _roomNameTextUI.text = roomInfo.Name;
-        _masterNicknameTextUI.text = "master name";
         _playerCountTextUI.text = $"{roomInfo.PlayerCount}/{roomInfo.MaxPlayers}";
+
+        if (roomInfo.CustomProperties.TryGetValue("MasterName", out object masterName))
+        {
+            _masterNicknameTextUI.text = masterName.ToString();
+        }
     }
 
     private void EnterRoom()
